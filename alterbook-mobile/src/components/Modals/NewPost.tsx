@@ -28,7 +28,7 @@ const NewPost = (): JSX.Element => {
             <View style={tw`flex-col w-full my-3`}>
               <TouchableOpacity
                 activeOpacity={0.5}
-                style={tw`flex-row items-center justify-center w-full px-3 py-2 rounded-full bg-accent-2`}>
+                style={tw`flex-row items-center justify-center w-full px-3 py-2 rounded-md bg-accent-2`}>
                 <Text style={tw`text-regular text-sm`}>add_photo</Text>
               </TouchableOpacity>
             </View>
@@ -40,6 +40,14 @@ const NewPost = (): JSX.Element => {
                 value={story}
                 onChangeText={(value: string) => setStory(value)}
               />
+            </View>
+            <View style={tw`flex-row items-center justify-end w-full`}>
+              <TouchableOpacity
+                activeOpacity={0.5}
+                style={tw`flex-row items-center justify-center w-full max-w-[8rem] px-3 py-1 rounded-md bg-accent-2`}
+                onPress={() => setDefault()}>
+                <Text style={tw`text-regular text-sm`}>_post</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
