@@ -5,7 +5,7 @@ module.exports = {
     extend: {
       colors: {
         'accent-1': '#1E2022',
-        'accent-2': '#4D5053',
+        'accent-2': '#0E0E0E',
         'accent-3': '#E8EAED',
         'accent-4': '#27C52C',
       },
@@ -22,6 +22,14 @@ module.exports = {
   plugins: [
     plugin(({addUtilities}) => {
       addUtilities({
+        'border-line-top': {
+          borderTopWidth: 1,
+          borderColor: '#2E3032',
+        },
+        'border-line-bottom': {
+          borderBottomWidth: 1,
+          borderColor: '#2E3032',
+        },
         'text-regular': {
           fontFamily: 'Inconsolata-Regular',
           color: '#E8EAED',

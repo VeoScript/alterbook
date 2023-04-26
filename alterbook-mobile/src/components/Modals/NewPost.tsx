@@ -36,7 +36,7 @@ const NewPost = (): JSX.Element => {
               <Text style={tw`text-regular`}>$ your_story</Text>
               <TextInput
                 multiline
-                style={tw`w-full p-3 border-b border-accent-2 text-accent-4`}
+                style={tw`w-full p-3 border-line-bottom text-accent-4`}
                 value={story}
                 onChangeText={(value: string) => setStory(value)}
               />
