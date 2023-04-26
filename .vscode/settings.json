@@ -3,4 +3,5 @@
   "eslint.workingDirectories": [
     {"mode": "auto"}
   ],
+  "files.eol": "\n",
 }
