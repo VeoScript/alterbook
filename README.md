@@ -1,10 +1,10 @@
 # Alterbook
 
-Minimalist and simple social media app.
+Old school, minimal social media app.
 
 ## Description
 
-One my personal projects that create a basic social media app using modern tech-stack.
+Bring back memories. A basic social media app using modern tech-stack.
 
 ## Getting Started
 
