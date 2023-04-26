@@ -7,3 +7,17 @@ export interface NewPostInterface {
   setStory: (value: string) => void;
   setDefault: () => void;
 }
+
+export interface RegisterInterface {
+  username: string;
+  email: string;
+  password: string;
+  repassword: string;
+  setUsername: (value: string) => void;
+  setEmail: (value: string) => void;
+  setPassword: (value: string) => void;
+  setRepassword: (value: string) => void;
+  setDefault: () => void;
+}
+
+export interface LoginInterface extends Omit<RegisterInterface, 'email' | 'repassword' | 'setEmail' | 'setRepassword'> {}
