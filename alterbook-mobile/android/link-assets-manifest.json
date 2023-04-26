@@ -1,0 +1,37 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/Inconsolata-Black.ttf",
+      "sha1": "56b30b954b9402d13238c871c1d3e115bac0174d"
+    },
+    {
+      "path": "src/assets/fonts/Inconsolata-Bold.ttf",
+      "sha1": "4cef458cf354b5c2480b9e47f0223791cf252aa7"
+    },
+    {
+      "path": "src/assets/fonts/Inconsolata-ExtraBold.ttf",
+      "sha1": "e2037dbdb4510ade1dcc005513b06280b88643c2"
+    },
+    {
+      "path": "src/assets/fonts/Inconsolata-ExtraLight.ttf",
+      "sha1": "804d4aedca82ad81b440ffd2e7e3719e02ad1397"
+    },
+    {
+      "path": "src/assets/fonts/Inconsolata-Light.ttf",
+      "sha1": "fd0d158d1038802214e7f090513d193a2762f194"
+    },
+    {
+      "path": "src/assets/fonts/Inconsolata-Medium.ttf",
+      "sha1": "7efb9f294ca8294329b86d9950573a8e955d31b0"
+    },
+    {
+      "path": "src/assets/fonts/Inconsolata-Regular.ttf",
+      "sha1": "38e2405163f86b864875c6cb7a52faa917b37f5d"
+    },
+    {
+      "path": "src/assets/fonts/Inconsolata-SemiBold.ttf",
+      "sha1": "464aae0fa237ec622349a36cf37a6ac34d907994"
+    }
+  ]
+}

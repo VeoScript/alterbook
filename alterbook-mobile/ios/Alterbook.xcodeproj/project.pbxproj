@@ -14,6 +14,14 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-Alterbook-AlterbookTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-Alterbook-AlterbookTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		DC42DC04F1414D55A08B7557 /* Inconsolata-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E7F037BACAA54D0AAF987F79 /* Inconsolata-Black.ttf */; };
+		5B88C2260BB94CD5B80324C1 /* Inconsolata-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1ACAA8BBE596412092705724 /* Inconsolata-Bold.ttf */; };
+		113E5AE891E3463D9AA0B2CF /* Inconsolata-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 94D2EE22B2BC4145BE943F6E /* Inconsolata-ExtraBold.ttf */; };
+		373334348EFC4F97B44C2A87 /* Inconsolata-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6A03F0F0AC3248F697BB88CF /* Inconsolata-ExtraLight.ttf */; };
+		9F875E456E20481BAFA086F6 /* Inconsolata-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2184F41DF5F41EABC25342A /* Inconsolata-Light.ttf */; };
+		E4EEC839D492455A8D674FFB /* Inconsolata-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 756910234BEE43E3A1FD86FB /* Inconsolata-Medium.ttf */; };
+		7CF560F287844F1E8ED0992B /* Inconsolata-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D099271745B4A18ADA5B81D /* Inconsolata-Regular.ttf */; };
+		F526F624CF214601BA6FB50E /* Inconsolata-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9B41FB5CD8EF45A690468A85 /* Inconsolata-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +52,14 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Alterbook/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-Alterbook-AlterbookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alterbook-AlterbookTests.release.xcconfig"; path = "Target Support Files/Pods-Alterbook-AlterbookTests/Pods-Alterbook-AlterbookTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		E7F037BACAA54D0AAF987F79 /* Inconsolata-Black.ttf */ = {isa = PBXFileReference; name = "Inconsolata-Black.ttf"; path = "../src/assets/fonts/Inconsolata-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1ACAA8BBE596412092705724 /* Inconsolata-Bold.ttf */ = {isa = PBXFileReference; name = "Inconsolata-Bold.ttf"; path = "../src/assets/fonts/Inconsolata-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		94D2EE22B2BC4145BE943F6E /* Inconsolata-ExtraBold.ttf */ = {isa = PBXFileReference; name = "Inconsolata-ExtraBold.ttf"; path = "../src/assets/fonts/Inconsolata-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6A03F0F0AC3248F697BB88CF /* Inconsolata-ExtraLight.ttf */ = {isa = PBXFileReference; name = "Inconsolata-ExtraLight.ttf"; path = "../src/assets/fonts/Inconsolata-ExtraLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A2184F41DF5F41EABC25342A /* Inconsolata-Light.ttf */ = {isa = PBXFileReference; name = "Inconsolata-Light.ttf"; path = "../src/assets/fonts/Inconsolata-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		756910234BEE43E3A1FD86FB /* Inconsolata-Medium.ttf */ = {isa = PBXFileReference; name = "Inconsolata-Medium.ttf"; path = "../src/assets/fonts/Inconsolata-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3D099271745B4A18ADA5B81D /* Inconsolata-Regular.ttf */ = {isa = PBXFileReference; name = "Inconsolata-Regular.ttf"; path = "../src/assets/fonts/Inconsolata-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9B41FB5CD8EF45A690468A85 /* Inconsolata-SemiBold.ttf */ = {isa = PBXFileReference; name = "Inconsolata-SemiBold.ttf"; path = "../src/assets/fonts/Inconsolata-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +138,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				2780AA355C8A43869480B5D3 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -147,6 +164,22 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		2780AA355C8A43869480B5D3 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				E7F037BACAA54D0AAF987F79 /* Inconsolata-Black.ttf */,
+				1ACAA8BBE596412092705724 /* Inconsolata-Bold.ttf */,
+				94D2EE22B2BC4145BE943F6E /* Inconsolata-ExtraBold.ttf */,
+				6A03F0F0AC3248F697BB88CF /* Inconsolata-ExtraLight.ttf */,
+				A2184F41DF5F41EABC25342A /* Inconsolata-Light.ttf */,
+				756910234BEE43E3A1FD86FB /* Inconsolata-Medium.ttf */,
+				3D099271745B4A18ADA5B81D /* Inconsolata-Regular.ttf */,
+				9B41FB5CD8EF45A690468A85 /* Inconsolata-SemiBold.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -244,6 +277,14 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				DC42DC04F1414D55A08B7557 /* Inconsolata-Black.ttf in Resources */,
+				5B88C2260BB94CD5B80324C1 /* Inconsolata-Bold.ttf in Resources */,
+				113E5AE891E3463D9AA0B2CF /* Inconsolata-ExtraBold.ttf in Resources */,
+				373334348EFC4F97B44C2A87 /* Inconsolata-ExtraLight.ttf in Resources */,
+				9F875E456E20481BAFA086F6 /* Inconsolata-Light.ttf in Resources */,
+				E4EEC839D492455A8D674FFB /* Inconsolata-Medium.ttf in Resources */,
+				7CF560F287844F1E8ED0992B /* Inconsolata-Regular.ttf in Resources */,
+				F526F624CF214601BA6FB50E /* Inconsolata-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
