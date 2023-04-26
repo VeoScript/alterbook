@@ -11,7 +11,7 @@ const RegisterScreen = () => {
         <View style={tw`flex-col items-start w-full my-2`}>
           <Text style={tw`text-light text-sm`}>$ username</Text>
           <TextInput
-            style={tw`w-full p-1 border-b border-accent-2 text-accent-4`}
+            style={tw`w-full p-1 border-line-bottom text-accent-4`}
             value=""
             onChangeText={(value: string) => console.log(value)}
           />
@@ -19,7 +19,7 @@ const RegisterScreen = () => {
         <View style={tw`flex-col items-start w-full my-2`}>
           <Text style={tw`text-light text-sm`}>$ email</Text>
           <TextInput
-            style={tw`w-full p-1 border-b border-accent-2 text-accent-4`}
+            style={tw`w-full p-1 border-line-bottom text-accent-4`}
             keyboardType="email-address"
             value=""
             onChangeText={(value: string) => console.log(value)}
@@ -28,7 +28,7 @@ const RegisterScreen = () => {
         <View style={tw`flex-col items-start w-full my-2`}>
           <Text style={tw`text-light text-sm`}>$ password</Text>
           <TextInput
-            style={tw`w-full p-1 border-b border-accent-2 text-accent-4`}
+            style={tw`w-full p-1 border-line-bottom text-accent-4`}
             secureTextEntry={true}
             value=""
             onChangeText={(value: string) => console.log(value)}
@@ -37,7 +37,7 @@ const RegisterScreen = () => {
         <View style={tw`flex-col items-start w-full my-2`}>
           <Text style={tw`text-light text-sm`}>$ re_enter_password</Text>
           <TextInput
-            style={tw`w-full p-1 border-b border-accent-2 text-accent-4`}
+            style={tw`w-full p-1 border-line-bottom text-accent-4`}
             secureTextEntry={true}
             value=""
             onChangeText={(value: string) => console.log(value)}

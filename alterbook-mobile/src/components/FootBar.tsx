@@ -8,7 +8,7 @@ const FootBar = (): JSX.Element => {
   const { setIsVisible } = newPostStore();
 
   return (
-    <View style={tw`flex-row items-center justify-between w-full px-5 py-3 border-t border-accent-2`}>
+    <View style={tw`flex-row items-center justify-between w-full px-5 py-3 border-line-top`}>
       <Text style={tw`flex-1 text-regular text-base text-accent-4`}>
         @username
       </Text>

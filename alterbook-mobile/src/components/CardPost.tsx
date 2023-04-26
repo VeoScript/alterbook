@@ -5,7 +5,7 @@ import { View, Text } from 'react-native';
 
 const CardPost = (): JSX.Element => {
   return (
-    <View style={tw`flex-row w-full overflow-hidden border-b border-accent-2 p-5`}>
+    <View style={tw`flex-row w-full overflow-hidden border-line-bottom p-5`}>
       <View style={tw`flex-col items-start mr-3`}>
         <View style={tw`flex-col w-full my-1`}>
           <FeatherIcon size={20} name="heart" color="#E8EAED" />
