@@ -1,10 +1,10 @@
-import {createNavigationContainerRef} from '@react-navigation/native';
+import { createNavigationContainerRef } from '@react-navigation/native';
 
 interface NavigationInterface {
   navigationRef: {
     navigate: (screen: string, params?: any) => void;
     goBack: () => void;
-    isReady: Boolean;
+    isReady: boolean;
   };
 }
 
