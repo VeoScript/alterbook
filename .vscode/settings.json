@@ -1,7 +1,0 @@
-{
-  "eslint.codeActionsOnSave.rules": null,
-  "eslint.workingDirectories": [
-    {"mode": "auto"}
-  ],
-  "files.eol": "\n",
-}
