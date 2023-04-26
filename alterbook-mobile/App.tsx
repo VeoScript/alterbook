@@ -1,10 +1,14 @@
 import React from 'react';
 import * as screen from './src/shared/screen';
+import StatusBarMain from './src/components/StatusBarMain';
+import Loading from './src/layouts/misc/Loading';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { StatusBar } from 'react-native';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { navigationRef } from './src/config/RootNavigation';
+import { useGuard } from './src/helpers/hooks/useGuard';
+import { useCheckOnline } from './src/helpers/hooks/useCheckOnline';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -17,16 +21,29 @@ const queryClient = new QueryClient({
 const Stack = createNativeStackNavigator();
 
 const App = (): JSX.Element => {
+
+  const isAuth = useGuard();
+
+  const checkOnline = useCheckOnline();
+
+  if (checkOnline !== null && !checkOnline) {
+    return <Loading />;
+  }
+
   return (
     <QueryClientProvider client={queryClient}>
       <NavigationContainer ref={navigationRef}>
-        <StatusBar
-          animated={false}
-          backgroundColor="#2E3134"
-          barStyle="light-content"
-        />
+        <StatusBarMain />
         <Stack.Navigator screenOptions={{ headerShown: false, animation: 'none' }}>
-          <Stack.Screen name="HomeScreen" component={screen.HomeScreen} />
+          {!isAuth
+            ? <>
+                <Stack.Screen name="LoginScreen" component={screen.LoginScreen} />
+                <Stack.Screen name="RegisterScreen" component={screen.RegisterScreen} />
+              </>
+            : <>
+                <Stack.Screen name="HomeScreen" component={screen.HomeScreen} />
+              </>
+          }
         </Stack.Navigator>
       </NavigationContainer>
     </QueryClientProvider>

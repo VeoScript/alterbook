@@ -11,7 +11,7 @@ interface IProps {
 
 type MainLayoutProps = (props: IProps) => JSX.Element;
 
-const MainLayout: MainLayoutProps = ({children}) => {
+const MainLayout: MainLayoutProps = ({ children }) => {
   return (
     <SafeAreaView style={tw`relative flex-1 bg-accent-1`}>
       <NavBar />
