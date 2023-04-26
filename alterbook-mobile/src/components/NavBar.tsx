@@ -10,7 +10,7 @@ const NavBar = (): JSX.Element => {
     <View
       style={tw`flex-row items-center justify-between w-full p-5 border-b border-accent-2`}>
       <View style={tw`flex-1 flex-row items-center justify-start`}>
-        <Text style={tw`text-regular text-xl`}>alterbook</Text>
+        <Text style={tw`text-regular text-xl text-accent-4`}>alterbook</Text>
       </View>
       <View style={tw`flex-1 flex-row items-center justify-end`}>
         {navbar.map(

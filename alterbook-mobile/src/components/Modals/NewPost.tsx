@@ -19,7 +19,7 @@ const NewPost = (): JSX.Element => {
       <View style={tw`flex-1 flex-col w-full p-5 bg-accent-1 bg-opacity-95`}>
         <View style={tw`flex-col w-full overflow-hidden`}>
           <View style={tw`flex-row items-center justify-between w-full`}>
-            <Text style={tw`text-regular text-xl`}>New Post</Text>
+            <Text style={tw`text-regular text-xl text-accent-4`}>New Post</Text>
             <TouchableOpacity activeOpacity={0.5} onPress={() => setDefault()}>
               <OcticonIcon size={18} name="x" color="#E8EAED" />
             </TouchableOpacity>
