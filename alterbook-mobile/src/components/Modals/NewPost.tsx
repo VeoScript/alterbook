@@ -1,12 +1,12 @@
 import React from 'react';
 import tw from '../../styles/tailwind';
-import {OcticonIcon} from '../../utils/Icons';
-import {Modal, View, Text, TouchableOpacity, TextInput} from 'react-native';
+import { OcticonIcon } from '../../utils/Icons';
+import { Modal, View, Text, TouchableOpacity, TextInput } from 'react-native';
 
-import {newPostStore} from '../../helpers/zustand/store';
+import { newPostStore } from '../../helpers/zustand/store';
 
 const NewPost = (): JSX.Element => {
-  const {isVisible, story, setStory, setDefault} = newPostStore();
+  const { isVisible, story, setStory, setDefault } = newPostStore();
 
   return (
     <Modal

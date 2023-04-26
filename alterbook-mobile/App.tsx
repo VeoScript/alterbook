@@ -1,10 +1,10 @@
 import React from 'react';
 import * as screen from './src/shared/screen';
-import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
-import {StatusBar} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {navigationRef} from './src/config/RootNavigation';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { StatusBar } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { navigationRef } from './src/config/RootNavigation';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,8 +25,7 @@ const App = (): JSX.Element => {
           backgroundColor="#2E3134"
           barStyle="light-content"
         />
-        <Stack.Navigator
-          screenOptions={{headerShown: false, animation: 'none'}}>
+        <Stack.Navigator screenOptions={{ headerShown: false, animation: 'none' }}>
           <Stack.Screen name="HomeScreen" component={screen.HomeScreen} />
         </Stack.Navigator>
       </NavigationContainer>

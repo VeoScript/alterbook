@@ -1,15 +1,14 @@
 import React from 'react';
 import tw from '../styles/tailwind';
-import {View, Text, TouchableOpacity} from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 
-import {newPostStore} from '../helpers/zustand/store';
+import { newPostStore } from '../helpers/zustand/store';
 
 const FootBar = (): JSX.Element => {
-  const {setIsVisible} = newPostStore();
+  const { setIsVisible } = newPostStore();
 
   return (
-    <View
-      style={tw`flex-row items-center justify-between w-full px-5 py-3 border-t border-accent-2`}>
+    <View style={tw`flex-row items-center justify-between w-full px-5 py-3 border-t border-accent-2`}>
       <Text style={tw`flex-1 text-regular text-base text-accent-4`}>
         @username
       </Text>
