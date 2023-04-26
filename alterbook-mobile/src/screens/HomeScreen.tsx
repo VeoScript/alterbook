@@ -7,7 +7,7 @@ import { ScrollView } from 'react-native';
 const HomeScreen = (): JSX.Element => {
   return (
     <MainLayout>
-      <ScrollView style={tw`w-full h-full`}>
+      <ScrollView style={tw`w-full h-full`} keyboardShouldPersistTaps="handled">
         <CardPost />
       </ScrollView>
     </MainLayout>

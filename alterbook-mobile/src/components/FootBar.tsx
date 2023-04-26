@@ -14,9 +14,9 @@ const FootBar = (): JSX.Element => {
       </Text>
       <TouchableOpacity
         activeOpacity={0.5}
-        style={tw`flex-1 flex-row items-center justify-center w-full max-w-[8rem] px-3 py-1 rounded-md bg-accent-2`}
+        style={tw`flex-1 flex-row items-center justify-end w-full max-w-[8rem] px-3 py-1 rounded-md bg-accent-2`}
         onPress={() => setIsVisible(true)}>
-        <Text style={tw`text-regular text-sm`}>new_post</Text>
+        <Text style={tw`text-regular text-sm`}>_new_post</Text>
       </TouchableOpacity>
     </View>
   );
