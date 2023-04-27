@@ -1,7 +1,7 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
 
-const StatusBarMain = () => {
+const StatusBarMain = (): JSX.Element => {
   return (
     <StatusBar
       animated={false}
