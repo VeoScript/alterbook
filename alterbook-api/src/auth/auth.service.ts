@@ -23,9 +23,9 @@ export class AuthService {
 
   async register(registerAuthDto: RegisterAuthDto) {
     try {
-      const { username, password } = registerAuthDto;
+      const { username, email, password } = registerAuthDto;
 
-      if (username === '' || password === '') {
+      if (username === '' || email === '' || password === '') {
         throw new BadRequestException('All fields are required');
       }
 
@@ -79,7 +79,7 @@ export class AuthService {
 
       const jwt = await this.jwtService.signAsync({ id: user.id });
 
-      response.cookie('fuckingjwt', jwt, { httpOnly: true });
+      response.cookie('alterbook', jwt, { httpOnly: true });
 
       return {
         message: 'Success',
@@ -91,7 +91,7 @@ export class AuthService {
 
   async logout(response: Response) {
     try {
-      response.clearCookie('fuckingjwt');
+      response.clearCookie('alterbook');
 
       return {
         message: 'Log out successfully',
@@ -103,7 +103,7 @@ export class AuthService {
 
   async user(request: Request) {
     try {
-      const cookie = request.cookies['fuckingjwt'];
+      const cookie = request.cookies['alterbook'];
 
       const cookieData = await this.jwtService.verifyAsync(cookie);
 
