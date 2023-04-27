@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import api from '../../../config/Axios';
+import { UserInterface } from '../../../shared/interfaces';
 
 export const useGetUser = () => {
-  return useQuery(['user'],
+  return useQuery<UserInterface, any>(['user'],
     async () => {
       const user = await api.get('/api/auth/user');
       return user.data;

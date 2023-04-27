@@ -1,5 +1,5 @@
 import React from 'react';
-import * as screen from './src/shared/screen';
+import * as screen from './src/shared/screens';
 import StatusBarMain from './src/components/StatusBarMain';
 import Loading from './src/layouts/misc/Loading';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -42,6 +42,7 @@ const App = (): JSX.Element => {
               </>
             : <>
                 <Stack.Screen name="HomeScreen" component={screen.HomeScreen} />
+                <Stack.Screen name="ProfileScreen" component={screen.ProfileScreen} />
               </>
           }
         </Stack.Navigator>

@@ -2,8 +2,9 @@ import React from 'react';
 import tw from '../styles/tailwind';
 import { FeatherIcon } from '../utils/Icons';
 import { View, Text, TouchableOpacity, Alert } from 'react-native';
-
+import { useNavigate } from '../config/RootNavigation';
 import { navbar } from '../config/Paths';
+
 import { useLogoutMutation } from '../helpers/tanstack/mutations/auth';
 
 const NavBar = (): JSX.Element => {
@@ -32,7 +33,7 @@ const NavBar = (): JSX.Element => {
                 <TouchableOpacity
                   activeOpacity={0.5}
                   style={tw`mx-2`}
-                  onPress={() => console.log(_nav.name)}>
+                  onPress={() => useNavigate(_nav.screen)}>
                   <FeatherIcon size={20} name={_nav.icon} color="#E8EAED" />
                 </TouchableOpacity>
               ) : (
