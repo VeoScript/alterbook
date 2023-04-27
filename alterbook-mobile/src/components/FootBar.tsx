@@ -2,12 +2,12 @@ import React from 'react';
 import tw from '../styles/tailwind';
 import { View, Text, TouchableOpacity } from 'react-native';
 
-import { UserInterface } from '../shared/interfaces';
+import { UserPropsInterface } from '../shared/interfaces';
 import { newPostStore } from '../helpers/zustand/store';
 
-type FoorBarProps = (props: UserInterface) => JSX.Element;
+type FootBarProps = (props: UserPropsInterface) => JSX.Element;
 
-const FootBar: FoorBarProps = ({ user }) => {
+const FootBar: FootBarProps = ({ user }) => {
 
   const { setIsVisible } = newPostStore();
 
