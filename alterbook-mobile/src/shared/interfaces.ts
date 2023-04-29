@@ -15,5 +15,5 @@ export interface PostPropsInterface {
   image: string;
   story: string;
   user: Omit<UserInterface, 'email' | 'shortbio'>;
-  userId: string;
+  created_at: string;
 }
