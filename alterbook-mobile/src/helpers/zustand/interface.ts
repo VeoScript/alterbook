@@ -1,12 +1,4 @@
-export interface NewPostInterface {
-  isVisible: boolean;
-  image: string;
-  story: string;
-  setIsVisible: (value: boolean) => void;
-  setImage: (value: string) => void;
-  setStory: (value: string) => void;
-  setDefault: () => void;
-}
+export interface LoginInterface extends Omit<RegisterInterface, 'email' | 'repassword' | 'setEmail' | 'setRepassword'> {}
 
 export interface RegisterInterface {
   username: string;
@@ -20,4 +12,12 @@ export interface RegisterInterface {
   setDefault: () => void;
 }
 
-export interface LoginInterface extends Omit<RegisterInterface, 'email' | 'repassword' | 'setEmail' | 'setRepassword'> {}
+export interface NewPostInterface {
+  isVisible: boolean;
+  image: any;
+  story: string;
+  setIsVisible: (value: boolean) => void;
+  setImage: (value: any) => void;
+  setStory: (value: string) => void;
+  setDefault: () => void;
+}
