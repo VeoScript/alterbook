@@ -7,4 +7,6 @@ export class AuthEntity implements UserModel {
   email: string;
   password: string;
   shortbio: string;
+  created_at: Date;
+  updated_at: Date;
 }

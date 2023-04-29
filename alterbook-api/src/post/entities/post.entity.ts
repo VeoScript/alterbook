@@ -5,4 +5,6 @@ export class PostEntity implements PostModel {
   image: string;
   story: string;
   userId: string;
+  created_at: Date;
+  updated_at: Date;
 }
