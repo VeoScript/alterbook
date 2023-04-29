@@ -4,11 +4,11 @@ import {
   UnauthorizedException,
   BadRequestException,
 } from '@nestjs/common';
+import { Request, Response } from 'express';
 import { Prisma } from '@prisma/client';
 import { RegisterAuthDto } from './dto/register-auth.dto';
 import { LoginAuthDto } from './dto/login-auth.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { Request, Response } from 'express';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 
@@ -79,7 +79,7 @@ export class AuthService {
 
       const jwt = await this.jwtService.signAsync({ id: user.id });
 
-      response.cookie('alterbook', jwt, { httpOnly: true });
+      response.cookie(process.env.JWT_NAME, jwt, { httpOnly: true });
 
       return {
         message: 'Success',
@@ -91,7 +91,7 @@ export class AuthService {
 
   async logout(response: Response) {
     try {
-      response.clearCookie('alterbook');
+      response.clearCookie(process.env.JWT_NAME);
 
       return {
         message: 'Log out successfully',
@@ -103,7 +103,7 @@ export class AuthService {
 
   async user(request: Request) {
     try {
-      const cookie = request.cookies['alterbook'];
+      const cookie = request.cookies[process.env.JWT_NAME];
 
       const cookieData = await this.jwtService.verifyAsync(cookie);
 
