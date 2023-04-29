@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import api from '../../../config/Axios';
+
 import { UserInterface } from '../../../shared/interfaces';
 
 export const useGetUser = () => {

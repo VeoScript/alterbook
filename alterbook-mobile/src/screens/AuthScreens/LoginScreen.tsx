@@ -24,6 +24,8 @@ const LoginScreen = () => {
   const loginMutation = useLoginMutation();
 
   const handleRegister = async () => {
+    setIsLoading(true);
+
     await loginMutation.mutateAsync({
       username,
       password,
@@ -83,7 +85,11 @@ const LoginScreen = () => {
           <TouchableOpacity
             activeOpacity={0.5}
             style={tw`flex-row items-center justify-end w-full max-w-[10rem] my-1 px-3 py-1 rounded-md bg-accent-2`}
-            onPress={() => useNavigate('RegisterScreen')}>
+            onPress={() => {
+              setError('');
+              setDefault();
+              useNavigate('RegisterScreen');
+            }}>
             <Text style={tw`text-regular text-sm text-accent-4`}>_register</Text>
           </TouchableOpacity>
           <TouchableOpacity
