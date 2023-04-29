@@ -28,6 +28,10 @@ export class PostService {
         throw new UnauthorizedException();
       }
 
+      if (story === '') {
+        throw new BadRequestException('Story is required');
+      }
+
       return await this.prismaService.post.create({
         data: {
           image,
@@ -50,9 +54,36 @@ export class PostService {
         throw new UnauthorizedException();
       }
 
-      const posts = await this.prismaService.post.findMany();
+      const limit = 10
+      const cursor = request.query.cursor ?? ''
+      const cursorObj = cursor === '' ? undefined : { id: String(cursor) }
 
-      return posts;
+      const posts = await this.prismaService.post.findMany({
+        select: {
+          id: true,
+          image: true,
+          story: true,
+          created_at: true,
+          user: {
+            select: {
+              id: true,
+              image: true,
+              username: true,
+            },
+          },
+        },
+        orderBy: {
+          created_at: 'desc'
+        },
+        take: limit,
+        cursor: cursorObj,
+        skip: cursor === '' ? 0 : 1
+      });
+
+      return {
+        posts,
+        nextId:  posts.length === limit ? posts[limit - 1].id : undefined,
+      };
     } catch (e) {
       throw new UnauthorizedException();
     }
