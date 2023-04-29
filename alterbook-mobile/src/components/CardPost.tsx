@@ -1,13 +1,14 @@
 import React from 'react';
+import moment from 'moment';
 import tw from '../styles/tailwind';
 import { FeatherIcon } from '../utils/Icons';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 
 import { PostPropsInterface } from '../shared/interfaces';
 
 type CardPostProps = (props: PostPropsInterface) => JSX.Element;
 
-const CardPost: CardPostProps = () => {
+const CardPost: CardPostProps = ({ image, story, user, created_at }) => {
   return (
     <View style={tw`flex-row w-full overflow-hidden border-line-bottom p-5`}>
       <View style={tw`flex-col items-start mr-3`}>
@@ -24,19 +25,22 @@ const CardPost: CardPostProps = () => {
           </Text>
         </View>
       </View>
-      <View style={tw`flex-col items-start ml-3`}>
+      <View style={tw`flex-1 flex-col items-start w-full ml-3`}>
         <View style={tw`w-full`}>
-          <Text style={tw`text-light text-sm`}>
-            This is the text caption created by the fuckin user...
-          </Text>
+          {image && (
+            <Image
+              style={tw`rounded-md mb-3 w-full h-[20rem] bg-accent-2`}
+              resizeMode="cover"
+              source={{
+                uri: `${ image }`,
+              }}
+            />
+          )}
+          <Text style={tw`text-light text-sm`}>{story}</Text>
         </View>
-        <View style={tw`flex-col w-full my-3`}>
-          <Text style={tw`flex-1 my-1 text-light text-sm text-accent-4`}>
-            @username
-          </Text>
-          <Text style={tw`flex-1 my-1 text-light text-xs text-neutral-400`}>
-            April 25, 2023
-          </Text>
+        <View style={tw`flex-row items-center w-full my-3`}>
+          <Text style={tw`flex-1 text-left my-1 text-light text-sm text-accent-4`}>@{user.username}</Text>
+          <Text style={tw`flex-1 text-right my-1 text-light text-xs text-neutral-400`}>{moment(created_at).format('LL')}</Text>
         </View>
       </View>
     </View>

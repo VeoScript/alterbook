@@ -41,24 +41,46 @@ const NewPost = (): JSX.Element => {
     try {
       setIsLoading(true);
 
-      const photo: any = image[0];
-      const data = new FormData();
+      if (image !== null) {
+        const photo: any = image[0];
+        const data = new FormData();
 
-      data.append('image', {
-        uri: photo.uri,
-        name: photo.fileName,
-        type: photo.type,
-        size: photo.fileSize,
-      });
+        data.append('image', {
+          uri: photo.uri,
+          name: photo.fileName,
+          type: photo.type,
+          size: photo.fileSize,
+        });
 
-      await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_SECRET}`, {
-        method: 'POST',
-        body: data,
-      })
-      .then((response) => response.json())
-      .then(async (result) => {
+        await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_SECRET}`, {
+          method: 'POST',
+          body: data,
+        })
+        .then((response) => response.json())
+        .then(async (result) => {
+          await createPostMutation.mutateAsync({
+            image: String(result.data.url) ?? null,
+            story: story,
+          },
+          {
+            onError: (e: any) => {
+              setIsLoading(false);
+              setError(e.response.data?.message);
+            },
+            onSuccess: () => {
+              setIsLoading(false);
+              setDefault();
+            },
+          });
+        })
+        .catch((e) => {
+          setIsLoading(false);
+          setError(String(e));
+          console.log(e);
+        });
+      } else {
         await createPostMutation.mutateAsync({
-          image: String(result.data.url) ?? null,
+          image: null,
           story: story,
         },
         {
@@ -71,15 +93,9 @@ const NewPost = (): JSX.Element => {
             setDefault();
           },
         });
-      })
-      .catch((e) => {
-        setIsLoading(false);
-        setError(String(e));
-        console.log(e);
-      });
+      }
     } catch (e: any) {
       setIsLoading(false);
-      setError(String(e));
       console.log(e);
     }
   };
@@ -94,7 +110,7 @@ const NewPost = (): JSX.Element => {
         setDefault();
       }}>
       <View style={tw`flex-1 flex-col w-full bg-accent-1 bg-opacity-95`}>
-        <ScrollView>
+        <ScrollView keyboardShouldPersistTaps="handled">
           <View style={tw`flex-col w-full p-5 overflow-hidden`}>
             <View style={tw`flex-row items-center justify-between w-full`}>
               <Text style={tw`text-regular text-xl text-accent-4`}>New Post</Text>
@@ -150,9 +166,9 @@ const NewPost = (): JSX.Element => {
               </View>
               <View style={tw`flex-row items-center justify-end w-full`}>
                 <TouchableOpacity
-                  disabled={isLoading}
+                  disabled={isLoading || story.trim() === ''}
                   activeOpacity={0.5}
-                  style={tw`flex-row items-center justify-end w-full max-w-[8rem] px-3 py-1 rounded-md bg-accent-2 ${isLoading ? 'opacity-50' : 'opacity-100'}`}
+                  style={tw`flex-row items-center justify-end w-full max-w-[8rem] px-3 py-1 rounded-md bg-accent-2 ${(isLoading || story.trim() === '') ? 'opacity-50' : 'opacity-100'}`}
                   onPress={handleCreatePost}>
                   <Text style={tw`text-regular text-sm`}>{isLoading ? '_loading...' : '_post'}</Text>
                 </TouchableOpacity>
