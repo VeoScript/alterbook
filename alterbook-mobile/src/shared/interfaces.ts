@@ -9,3 +9,11 @@ export interface UserInterface {
 export interface UserPropsInterface {
   user: UserInterface;
 }
+
+export interface PostPropsInterface {
+  id: string;
+  image: string;
+  story: string;
+  user: Omit<UserInterface, 'email' | 'shortbio'>;
+  userId: string;
+}

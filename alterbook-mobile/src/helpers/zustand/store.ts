@@ -1,17 +1,14 @@
 import { create } from 'zustand';
 import * as type from './interface';
 
-export const newPostStore = create<type.NewPostInterface>(set => ({
-  isVisible: false,
-  image: '',
-  story: '',
-  setIsVisible: (value: boolean) => set(() => ({ isVisible: value })),
-  setImage: (value: string) => set(() => ({ image: value })),
-  setStory: (value: string) => set(() => ({ story: value })),
+export const loginStore = create<type.LoginInterface>(set => ({
+  username: '',
+  password: '',
+  setUsername: (value: string) => set(() => ({ username: value })),
+  setPassword: (value: string) => set(() => ({ password: value })),
   setDefault: () => set(() => ({
-    isVisible: false,
-    image: '',
-    story: '',
+    username: '',
+    password: '',
   })),
 }));
 
@@ -32,13 +29,16 @@ export const registerStore = create<type.RegisterInterface>(set => ({
   })),
 }));
 
-export const loginStore = create<type.LoginInterface>(set => ({
-  username: '',
-  password: '',
-  setUsername: (value: string) => set(() => ({ username: value })),
-  setPassword: (value: string) => set(() => ({ password: value })),
+export const newPostStore = create<type.NewPostInterface>(set => ({
+  isVisible: false,
+  image: null,
+  story: '',
+  setIsVisible: (value: boolean) => set(() => ({ isVisible: value })),
+  setImage: (value: any) => set(() => ({ image: value })),
+  setStory: (value: string) => set(() => ({ story: value })),
   setDefault: () => set(() => ({
-    username: '',
-    password: '',
+    isVisible: false,
+    image: null,
+    story: '',
   })),
 }));
