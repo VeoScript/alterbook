@@ -28,7 +28,7 @@ const ProfileScreen = () => {
     fetchNextPage,
     isFetchingNextPage,
     refetch,
-    isFetching,
+    isRefetching,
   }: any = useGetPostsByUser();
 
   if (isLoadingUser || isLoadingPosts) {
@@ -132,7 +132,8 @@ const ProfileScreen = () => {
           <RefreshControl
             colors={['#27C52C']}
             tintColor={'#27C52C'}
-            refreshing={isFetching}
+            progressBackgroundColor={'#0E0E0E'}
+            refreshing={isRefetching}
             onRefresh={refetch}
           />
         }
