@@ -15,3 +15,18 @@ export const useGetPosts = () => {
     },
   );
 };
+
+export const useGetPostsByUser = () => {
+  return useInfiniteQuery(['userPosts'],
+    async ({ pageParam = ''}) => {
+      const userPosts = await api.get(`/api/post/user?cursor=${pageParam}`);
+      return userPosts.data;
+    },
+    {
+      getNextPageParam: (lastPage) => lastPage.nextId ?? false,
+      onError: (error: any) => {
+        console.error('ERROR USER POSTS', error.response.data);
+      },
+    },
+  );
+};

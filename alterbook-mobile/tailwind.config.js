@@ -30,6 +30,14 @@ module.exports = {
           borderBottomWidth: 1,
           borderColor: '#2E3032',
         },
+        'border-line-left': {
+          borderLeftWidth: 1,
+          borderColor: '#2E3032',
+        },
+        'border-line-right': {
+          borderRightWidth: 1,
+          borderColor: '#2E3032',
+        },
         'text-regular': {
           fontFamily: 'Inconsolata-Regular',
           color: '#E8EAED',

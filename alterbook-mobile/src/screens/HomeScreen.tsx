@@ -54,12 +54,10 @@ const HomeScreen = (): JSX.Element => {
 
   const listIsEmpty = () => {
     return (
-      <View style={tw`flex-1 flex-col items-center justify-center w-full my-3 `}>
-        <View style={tw`flex-1 w-full max-w-xs h-full`}>
-          <Text style={tw`text-regular text-sm text-accent-4`}>
-            Alterbook newsfeed is no posts as of now.
-          </Text>
-        </View>
+      <View style={tw`flex-1 flex-col items-center justify-center w-full my-3 p-3`}>
+        <Text style={tw`text-regular text-sm text-accent-4`}>
+          Alterbook newsfeed is no posts as of now.
+        </Text>
       </View>
     );
   };
