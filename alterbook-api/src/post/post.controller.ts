@@ -27,6 +27,11 @@ export class PostController {
     return this.postService.findAll(request);
   }
 
+  @Get('user')
+  findOneByUser(@Req() request: Request) {
+    return this.postService.findOneByUser(request);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string, @Req() request: Request) {
     return this.postService.findOne(id, request);

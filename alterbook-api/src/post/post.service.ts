@@ -89,6 +89,54 @@ export class PostService {
     }
   }
 
+  async findOneByUser(request: Request) {
+    try {
+      const cookie = request.cookies[process.env.JWT_NAME];
+
+      const cookieData = await this.jwtService.verifyAsync(cookie);
+
+      if (!cookieData) {
+        throw new UnauthorizedException();
+      }
+
+      const limit = 10
+      const cursor = request.query.cursor ?? ''
+      const cursorObj = cursor === '' ? undefined : { id: String(cursor) }
+
+      const posts = await this.prismaService.post.findMany({
+        where: {
+          userId: cookieData.id
+        },
+        select: {
+          id: true,
+          image: true,
+          story: true,
+          created_at: true,
+          user: {
+            select: {
+              id: true,
+              image: true,
+              username: true,
+            },
+          },
+        },
+        orderBy: {
+          created_at: 'desc'
+        },
+        take: limit,
+        cursor: cursorObj,
+        skip: cursor === '' ? 0 : 1
+      });
+
+      return {
+        posts,
+        nextId:  posts.length === limit ? posts[limit - 1].id : undefined,
+      };
+    } catch (e) {
+      throw new UnauthorizedException();
+    }
+  }
+
   async findOne(id: string, request: Request) {
     try {
       const cookie = request.cookies[process.env.JWT_NAME];
