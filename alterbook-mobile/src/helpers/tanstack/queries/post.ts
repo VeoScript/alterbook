@@ -16,10 +16,10 @@ export const useGetPosts = () => {
   );
 };
 
-export const useGetPostsByUser = () => {
-  return useInfiniteQuery(['userPosts'],
+export const useGetPostsByUser = (id: string) => {
+  return useInfiniteQuery(['userPosts', id],
     async ({ pageParam = ''}) => {
-      const userPosts = await api.get(`/api/post/user?cursor=${pageParam}`);
+      const userPosts = await api.get(`/api/post/user/${id}?cursor=${pageParam}`);
       return userPosts.data;
     },
     {

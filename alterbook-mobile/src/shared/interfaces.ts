@@ -4,6 +4,12 @@ export interface UserInterface {
   username: string;
   email: string;
   shortbio: string;
+  followers: any;
+  following: any;
+  _count: {
+    followers: true;
+    following: true;
+  };
 }
 
 export interface UserPropsInterface {
@@ -20,7 +26,7 @@ export interface PostPropsInterface {
   _count: {
     likes: number;
     comments: number;
-  }
+  };
 }
 
 export interface CommentPropsInterface {
