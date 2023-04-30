@@ -27,7 +27,7 @@ const HomeScreen = (): JSX.Element => {
     fetchNextPage,
     isFetchingNextPage,
     refetch,
-    isFetching,
+    isRefetching,
   }: any = useGetPosts();
 
   if (isLoadingUser || isLoadingPosts) {
@@ -84,7 +84,8 @@ const HomeScreen = (): JSX.Element => {
           <RefreshControl
             colors={['#27C52C']}
             tintColor={'#27C52C'}
-            refreshing={isFetching}
+            progressBackgroundColor={'#0E0E0E'}
+            refreshing={isRefetching}
             onRefresh={refetch}
           />
         }
