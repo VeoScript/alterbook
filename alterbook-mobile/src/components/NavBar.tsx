@@ -2,12 +2,15 @@ import React from 'react';
 import tw from '../styles/tailwind';
 import { FeatherIcon } from '../utils/Icons';
 import { View, Text, TouchableOpacity, Alert } from 'react-native';
+import { useRoute } from '@react-navigation/native';
 import { useNavigate } from '../config/RootNavigation';
 import { navbar } from '../config/Paths';
 
 import { useLogoutMutation } from '../helpers/tanstack/mutations/auth';
 
 const NavBar = (): JSX.Element => {
+
+  const route = useRoute();
 
   const logoutMutation = useLogoutMutation();
 
@@ -34,7 +37,7 @@ const NavBar = (): JSX.Element => {
                   activeOpacity={0.5}
                   style={tw`mx-2`}
                   onPress={() => useNavigate(_nav.screen)}>
-                  <FeatherIcon size={20} name={_nav.icon} color="#E8EAED" />
+                  <FeatherIcon size={20} name={_nav.icon} color={route.name === _nav.screen ? '#27C52C' : '#E8EAED'} />
                 </TouchableOpacity>
               ) : (
                 <TouchableOpacity

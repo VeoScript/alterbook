@@ -84,7 +84,7 @@ const ProfileScreen = () => {
             }
             <View style={tw`flex-1 flex-col w-full ml-2 py-2`}>
               <Text style={tw`text-bold text-xl`}>@{user.username}</Text>
-              <Text style={tw`text-light text-xs`}>{user.shortbio ?? 'Short description about you...'}</Text>
+              <Text style={tw`text-light text-xs`}>{(user.shortbio === null || user.shortbio === '') ? 'Short description about you...' : user.shortbio}</Text>
             </View>
           </View>
         </View>
