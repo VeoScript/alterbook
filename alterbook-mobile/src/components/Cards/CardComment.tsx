@@ -6,10 +6,15 @@ import { View, Text, TouchableOpacity, Alert } from 'react-native';
 
 import { CommentPropsInterface } from '../../shared/interfaces';
 import { useDeleteCommentMutation } from '../../helpers/tanstack/mutations/comments';
+import { useNavigate } from '../../config/RootNavigation';
 
-type CardCommentProps = (props: CommentPropsInterface) => JSX.Element;
+interface IProps extends CommentPropsInterface {
+  userId: string;
+}
 
-const CardComment: CardCommentProps = ({ id, message, created_at, user }) => {
+type CardCommentProps = (props: IProps) => JSX.Element;
+
+const CardComment: CardCommentProps = ({ id, message, created_at, user, userId }) => {
 
   const deleteCommentMutation = useDeleteCommentMutation();
 
@@ -49,7 +54,18 @@ const CardComment: CardCommentProps = ({ id, message, created_at, user }) => {
         </TouchableOpacity>
       </View>
       <View style={tw`flex-row items-center w-full my-3`}>
-        <Text style={tw`flex-1 text-left my-1 text-light text-sm text-accent-4`}>@{user.username}</Text>
+        <TouchableOpacity
+          activeOpacity={0.5}
+          style={tw`flex-1`}
+          onPress={() => {
+            if (user.id === userId) {
+              useNavigate('ProfileScreen');
+            } else {
+              useNavigate('OtherProfileScreen', { id: user.id });
+            }
+          }}>
+          <Text style={tw`text-left my-1 text-light text-sm text-accent-4`}>@{user.username}</Text>
+        </TouchableOpacity>
         <Text style={tw`flex-1 text-right my-1 text-light text-xs text-neutral-400`}>{moment(created_at).format('LL')}</Text>
       </View>
     </View>

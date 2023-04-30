@@ -6,6 +6,7 @@ import moment from 'moment';
 import tw from '../../styles/tailwind';
 import { FeatherIcon } from '../../utils/Icons';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { useNavigate } from '../../config/RootNavigation';
 
 import { PostPropsInterface } from '../../shared/interfaces';
 
@@ -58,7 +59,18 @@ const CardPost: CardPostProps = ({ id, image, story, created_at, user, likes, _c
             <Text style={tw`text-light text-sm`}>{story}</Text>
           </View>
           <View style={tw`flex-row items-center w-full my-3`}>
-            <Text style={tw`flex-1 text-left my-1 text-light text-sm text-accent-4`}>@{user.username}</Text>
+            <TouchableOpacity
+              activeOpacity={0.5}
+              style={tw`flex-1`}
+              onPress={() => {
+                if (user.id === userId) {
+                  useNavigate('ProfileScreen');
+                } else {
+                  useNavigate('OtherProfileScreen', { id: user.id });
+                }
+              }}>
+              <Text style={tw`text-left my-1 text-light text-sm text-accent-4`}>@{user.username}</Text>
+            </TouchableOpacity>
             <Text style={tw`flex-1 text-right my-1 text-light text-xs text-neutral-400`}>{moment(created_at).format('LL')}</Text>
           </View>
         </View>
@@ -72,6 +84,7 @@ const CardPost: CardPostProps = ({ id, image, story, created_at, user, likes, _c
         setIsVisible={setIsVisiblePost}
       />
       <ViewComments
+        userId={userId}
         postId={id}
         isVisible={isVisibleComment}
         setIsVisible={setIsVisibleComment}

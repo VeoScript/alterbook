@@ -43,6 +43,7 @@ const App = (): JSX.Element => {
             : <>
                 <Stack.Screen name="HomeScreen" component={screen.HomeScreen} />
                 <Stack.Screen name="ProfileScreen" component={screen.ProfileScreen} />
+                <Stack.Screen name="OtherProfileScreen" component={screen.OtherProfileScreen} />
                 <Stack.Screen name="SettingsScreen" component={screen.SettingsScreen} />
               </>
           }

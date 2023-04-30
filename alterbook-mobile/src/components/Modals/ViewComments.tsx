@@ -10,6 +10,7 @@ import { useCreateCommentMutation } from '../../helpers/tanstack/mutations/comme
 import CardComment from '../Cards/CardComment';
 
 interface IProps {
+  userId: string;
   postId: string;
   isVisible: boolean;
   setIsVisible: (value: boolean) => void;
@@ -17,7 +18,7 @@ interface IProps {
 
 type ViewCommentsProps = (props: IProps) => JSX.Element;
 
-const ViewComments: ViewCommentsProps = ({ postId, isVisible, setIsVisible }) => {
+const ViewComments: ViewCommentsProps = ({ userId, postId, isVisible, setIsVisible }) => {
 
   const createCommentMutation = useCreateCommentMutation();
 
@@ -76,6 +77,7 @@ const ViewComments: ViewCommentsProps = ({ postId, isVisible, setIsVisible }) =>
         message={item.item.message}
         created_at={item.item.created_at}
         user={item.item.user}
+        userId={userId}
       />
     );
   };

@@ -1,20 +1,21 @@
 import React from 'react';
-import Loading from '../layouts/misc/Loading';
-import Error from '../layouts/misc/Error';
-import MainLayout from '../layouts/MainLayout';
-import CardPost from '../components/Cards/CardPost';
-import tw from '../styles/tailwind';
-import { FeatherIcon } from '../utils/Icons';
-import { View, Text, Image, TouchableOpacity, ActivityIndicator, FlatList, RefreshControl } from 'react-native';
+import Loading from '../../layouts/misc/Loading';
+import Error from '../../layouts/misc/Error';
+import MainLayout from '../../layouts/MainLayout';
+import CardPost from '../../components/Cards/CardPost';
+import tw from '../../styles/tailwind';
+import { FeatherIcon } from '../../utils/Icons';
+import { View, Text, Image, ActivityIndicator, FlatList, RefreshControl } from 'react-native';
 
-import { useGetUser } from '../helpers/tanstack/queries/user';
-import { useGetPostsByUser } from '../helpers/tanstack/queries/post';
+import { useGetUser } from '../../helpers/tanstack/queries/user';
+import { useGetPostsByUser } from '../../helpers/tanstack/queries/post';
 
 const ProfileScreen = () => {
 
   const {
     data: user,
     isLoading: isLoadingUser,
+    isSuccess: isSuccessUser,
     isError: isErrorUser,
     error: errorUser,
   } = useGetUser();
@@ -29,7 +30,7 @@ const ProfileScreen = () => {
     isFetchingNextPage,
     refetch,
     isRefetching,
-  } = useGetPostsByUser();
+  } = useGetPostsByUser(isSuccessUser ? user.id : '');
 
   if (isLoadingUser || isLoadingPosts) {
     return <Loading />;
@@ -88,19 +89,18 @@ const ProfileScreen = () => {
             </View>
           </View>
         </View>
-        <TouchableOpacity
-          activeOpacity={0.5}
-          style={tw`flex-col items-center w-full p-3 border-line-bottom`}
-          onPress={() => console.log('Follow button')}
-        >
-          <Text style={tw`text-regular text-accent-4`}>_follow</Text>
-        </TouchableOpacity>
         <View style={tw`flex-row items-center w-full border-line-bottom`}>
           <View style={tw`flex-1 flex-row items-center justify-center p-3 border-line-right`}>
-            <Text style={tw`text-regular`}>11k _followers</Text>
+            <Text style={tw`text-regular`}>
+              <Text style={tw`text-bold text-accent-4`}>{user._count.followers}</Text>
+              {'\r'}_followers
+            </Text>
           </View>
           <View style={tw`flex-1 flex-row items-center justify-center p-3`}>
-            <Text style={tw`text-regular`}>105 _following</Text>
+            <Text style={tw`text-regular`}>
+              <Text style={tw`text-bold text-accent-4`}>{user._count.following}</Text>
+              {'\r'}_following
+            </Text>
           </View>
         </View>
         <View style={tw`flex-row items-center w-full p-3 border-line-bottom`}>
