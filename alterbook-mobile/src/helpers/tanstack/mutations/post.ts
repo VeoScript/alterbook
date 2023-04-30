@@ -15,6 +15,7 @@ export const useCreatePostMutation = () => {
       },
       onSuccess: async () => {
         queryClient.invalidateQueries(['posts']);
+        queryClient.invalidateQueries(['userPosts']);
         Toast('Created successfully');
       },
     },
