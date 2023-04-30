@@ -35,7 +35,7 @@ const ViewPost: ViewPostProps = ({ image, story, username, created_at, isVisible
             </View>
             {image && (
               <Image
-                style={tw`rounded-md mb-3 w-full h-[30rem] bg-accent-2`}
+                style={tw`rounded-md mb-3 w-full h-[25rem] bg-accent-2`}
                 resizeMode="cover"
                 source={{
                   uri: `${ image }`,

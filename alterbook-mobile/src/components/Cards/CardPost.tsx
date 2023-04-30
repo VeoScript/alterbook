@@ -1,12 +1,13 @@
 import React from 'react';
-import ViewPost from './Modals/ViewPost';
+import ViewPost from '../Modals/ViewPost';
+import ViewComments from '../Modals/ViewComments';
+import LikeButton from '../Interactions/LikeButton';
 import moment from 'moment';
-import tw from '../styles/tailwind';
-import { FeatherIcon } from '../utils/Icons';
+import tw from '../../styles/tailwind';
+import { FeatherIcon } from '../../utils/Icons';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 
-import { PostPropsInterface } from '../shared/interfaces';
-import LikeButton from './Interactions/LikeButton';
+import { PostPropsInterface } from '../../shared/interfaces';
 
 interface IProps extends PostPropsInterface {
   userId: string;
@@ -16,11 +17,12 @@ type CardPostProps = (props: IProps) => JSX.Element;
 
 const CardPost: CardPostProps = ({ id, image, story, created_at, user, likes, _count, userId }) => {
 
-  const [isVisible, setIsVisible] = React.useState<boolean>(false);
+  const [isVisiblePost, setIsVisiblePost] = React.useState<boolean>(false);
+  const [isVisibleComment, setIsVisibleComment] = React.useState<boolean>(false);
 
   return (
     <>
-      <View style={tw`flex-row w-full overflow-hidden border-line-bottom p-5`}>
+      <View style={tw`relative flex-row w-full overflow-hidden border-line-bottom p-5`}>
         <View style={tw`flex-col items-start mr-3`}>
           <LikeButton
             id={id}
@@ -29,8 +31,12 @@ const CardPost: CardPostProps = ({ id, image, story, created_at, user, likes, _c
             userId={userId}
           />
           <View style={tw`flex-col w-full my-1`}>
-            <FeatherIcon size={20} name="message-square" color="#E8EAED" />
-            <Text style={tw`mt-1 text-regular text-center text-xs text-neutral-400`}>500</Text>
+            <TouchableOpacity
+              activeOpacity={0.5}
+              onPress={() => setIsVisibleComment(true)}>
+              <FeatherIcon size={20} name="message-square" color="#E8EAED" />
+            </TouchableOpacity>
+            <Text style={tw`mt-1 text-regular text-center text-xs text-neutral-400`}>{_count.comments}</Text>
           </View>
         </View>
         <View style={tw`flex-1 flex-col items-start w-full ml-3`}>
@@ -39,7 +45,7 @@ const CardPost: CardPostProps = ({ id, image, story, created_at, user, likes, _c
               <TouchableOpacity
                 activeOpacity={0.5}
                 style={tw`w-full`}
-                onPress={() => setIsVisible(true)}>
+                onPress={() => setIsVisiblePost(true)}>
                 <Image
                   style={tw`rounded-md mb-3 w-full h-[20rem] bg-accent-2`}
                   resizeMode="cover"
@@ -62,8 +68,13 @@ const CardPost: CardPostProps = ({ id, image, story, created_at, user, likes, _c
         story={story}
         username={user.username}
         created_at={created_at}
-        isVisible={isVisible}
-        setIsVisible={setIsVisible}
+        isVisible={isVisiblePost}
+        setIsVisible={setIsVisiblePost}
+      />
+      <ViewComments
+        postId={id}
+        isVisible={isVisibleComment}
+        setIsVisible={setIsVisibleComment}
       />
     </>
   );

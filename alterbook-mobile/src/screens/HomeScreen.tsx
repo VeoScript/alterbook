@@ -2,7 +2,7 @@ import React from 'react';
 import Loading from '../layouts/misc/Loading';
 import Error from '../layouts/misc/Error';
 import MainLayout from '../layouts/MainLayout';
-import CardPost from '../components/CardPost';
+import CardPost from '../components/Cards/CardPost';
 import tw from '../styles/tailwind';
 import { FlatList, ActivityIndicator, Text, View, RefreshControl } from 'react-native';
 
@@ -28,7 +28,7 @@ const HomeScreen = (): JSX.Element => {
     isFetchingNextPage,
     refetch,
     isRefetching,
-  }: any = useGetPosts();
+  } = useGetPosts();
 
   if (isLoadingUser || isLoadingPosts) {
     return <Loading />;
