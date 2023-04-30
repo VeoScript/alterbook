@@ -2,7 +2,7 @@ import React from 'react';
 import Loading from '../layouts/misc/Loading';
 import Error from '../layouts/misc/Error';
 import MainLayout from '../layouts/MainLayout';
-import CardPost from '../components/CardPost';
+import CardPost from '../components/Cards/CardPost';
 import tw from '../styles/tailwind';
 import { FeatherIcon } from '../utils/Icons';
 import { View, Text, Image, TouchableOpacity, ActivityIndicator, FlatList, RefreshControl } from 'react-native';
@@ -29,7 +29,7 @@ const ProfileScreen = () => {
     isFetchingNextPage,
     refetch,
     isRefetching,
-  }: any = useGetPostsByUser();
+  } = useGetPostsByUser();
 
   if (isLoadingUser || isLoadingPosts) {
     return <Loading />;

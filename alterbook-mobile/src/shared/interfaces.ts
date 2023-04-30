@@ -19,5 +19,13 @@ export interface PostPropsInterface {
   likes: any;
   _count: {
     likes: number;
+    comments: number;
   }
+}
+
+export interface CommentPropsInterface {
+  id: string;
+  message: string;
+  created_at: string;
+  user: Omit<UserInterface, 'email' | 'shortbio'>;
 }
