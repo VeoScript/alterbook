@@ -116,8 +116,11 @@ const ProfileScreen = () => {
         id={item.item.id}
         image={item.item.image}
         story={item.item.story}
-        user={item.item.user}
         created_at={item.item.created_at}
+        user={item.item.user}
+        likes={item.item.likes}
+        _count={item.item._count}
+        userId={user.id}
       />
     );
   };

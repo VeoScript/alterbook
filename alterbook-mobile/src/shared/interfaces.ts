@@ -14,6 +14,10 @@ export interface PostPropsInterface {
   id: string;
   image: string;
   story: string;
-  user: Omit<UserInterface, 'email' | 'shortbio'>;
   created_at: string;
+  user: Omit<UserInterface, 'email' | 'shortbio'>;
+  likes: any;
+  _count: {
+    likes: number;
+  }
 }
