@@ -1,6 +1,6 @@
 import React from 'react';
 import tw from '../styles/tailwind';
-import { SafeAreaView, ScrollView, View, Text } from 'react-native';
+import { SafeAreaView, ScrollView, View, Text, Image } from 'react-native';
 
 interface IProps {
   children: React.ReactNode;
@@ -14,6 +14,11 @@ const AuthLayout: AuthLayoutProps = ({ children }) => {
       <ScrollView style={tw`w-full h-full`} keyboardShouldPersistTaps="handled">
         <View style={tw`flex-1 flex-col items-center justify-center w-full px-5 py-10`}>
           <View style={tw`flex-col items-center w-full my-10`}>
+            <Image
+              style={tw`w-[5rem] h-[5rem]`}
+              resizeMode="cover"
+              source={require('../assets/images/alterbook-logo.png')}
+            />
             <Text style={tw`text-black text-2xl text-accent-4`}>alterbook</Text>
             <Text style={tw`text-light text-xs text-accent-4`}>just put out everything you want to say here...</Text>
           </View>
