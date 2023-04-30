@@ -1,9 +1,9 @@
-import { Controller, Get, Post, Body, Param, Delete, Req } from '@nestjs/common';
+import { Controller, Get, Post, Delete, Body, Param, Req } from '@nestjs/common';
 import { Request } from 'express';
 import { CommentService } from './comment.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
 
-@Controller('comment')
+@Controller('api/comment')
 export class CommentController {
   constructor(private readonly commentService: CommentService) {}
 
@@ -12,14 +12,9 @@ export class CommentController {
     return this.commentService.create(createCommentDto, request);
   }
 
-  @Get()
+  @Get(':id')
   findAll(@Param('id') id: string, @Req() request: Request) {
     return this.commentService.findAll(id, request);
-  }
-
-  @Get(':id')
-  countComments(@Param('id') id: string, @Req() request: Request) {
-    return this.commentService.countComments(id, request);
   }
 
   @Delete(':id')

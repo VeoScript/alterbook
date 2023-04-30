@@ -86,26 +86,6 @@ export class CommentService {
     }
   }
 
-  async countComments(id: string, request: Request) {
-    try {
-      const cookie = request.cookies[process.env.JWT_NAME];
-
-      const cookieData = await this.jwtService.verifyAsync(cookie);
-
-      if (!cookieData) {
-        throw new UnauthorizedException();
-      }
-
-      return await this.prismaService.comment.count({
-        where: {
-          postId: id,
-        }
-      });
-    } catch (e) {
-      throw new BadRequestException(e);
-    }
-  }
-
   async remove(id: string, request: Request) {
     try {
       const cookie = request.cookies[process.env.JWT_NAME];
