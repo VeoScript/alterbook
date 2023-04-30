@@ -1,7 +1,7 @@
 import React from 'react';
 import * as screen from './src/shared/screens';
 import StatusBarMain from './src/components/StatusBarMain';
-import Loading from './src/layouts/misc/Loading';
+import Error from './src/layouts/misc/Error';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -27,7 +27,7 @@ const App = (): JSX.Element => {
   const checkOnline = useCheckOnline();
 
   if (checkOnline !== null && !checkOnline) {
-    return <Loading />;
+    return <Error error="Oops! you are offline, check your internet connection." />;
   }
 
   return (
