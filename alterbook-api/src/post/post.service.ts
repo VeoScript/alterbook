@@ -102,7 +102,7 @@ export class PostService {
     }
   }
 
-  async findAllByUser(request: Request) {
+  async findAllByUser(id: string, request: Request) {
     try {
       const cookie = request.cookies[process.env.JWT_NAME];
 
@@ -118,7 +118,7 @@ export class PostService {
 
       const posts = await this.prismaService.post.findMany({
         where: {
-          userId: cookieData.id
+          userId: id
         },
         select: {
           id: true,
