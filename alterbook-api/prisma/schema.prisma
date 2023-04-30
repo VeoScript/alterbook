@@ -21,6 +21,7 @@ model User {
   created_at          DateTime            @db.DateTime(6)           @default(now())
   updated_at          DateTime            @db.DateTime(6)           @default(now())
   posts               Post[]
+  likes               Like[]
 }
 
 model Post {
@@ -31,6 +32,20 @@ model Post {
   userId              String
   created_at          DateTime            @db.DateTime(6)           @default(now())
   updated_at          DateTime            @db.DateTime(6)           @default(now())
+  likes               Like[]
 
+  @@index([userId])
+}
+
+model Like {
+  id                  String              @id                       @default(cuid())
+  created_at          DateTime            @db.DateTime(6)           @default(now())
+  updated_at          DateTime            @db.DateTime(6)           @default(now())
+  post                Post                                          @relation(fields: [postId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  postId              String
+  user                User                                          @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId              String
+
+  @@index([postId])
   @@index([userId])
 }

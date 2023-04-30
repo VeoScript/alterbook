@@ -71,6 +71,11 @@ export class PostService {
               username: true,
             },
           },
+          _count: {
+            select: {
+              likes: true
+            }
+          },
         },
         orderBy: {
           created_at: 'desc'
@@ -119,6 +124,11 @@ export class PostService {
               username: true,
             },
           },
+          _count: {
+            select: {
+              likes: true
+            }
+          },
         },
         orderBy: {
           created_at: 'desc'
@@ -161,6 +171,11 @@ export class PostService {
               image: true,
               username: true,
             },
+          },
+          _count: {
+            select: {
+              likes: true
+            }
           },
         },
       });
