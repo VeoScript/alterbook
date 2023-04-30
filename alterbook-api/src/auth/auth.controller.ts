@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Body, Req, Res } from '@nestjs/common';
+import { Controller, Post, Get, Body, Param, Req, Res } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { AuthService } from './auth.service';
 import { RegisterAuthDto } from './dto/register-auth.dto';
@@ -29,5 +29,10 @@ export class AuthController {
   @Get('user')
   user(@Req() request: Request) {
     return this.authService.user(request);
+  }
+
+  @Get('user/:id')
+  userById(@Param('id') id: string, @Req() request: Request) {
+    return this.authService.userById(id, request);
   }
 }

@@ -121,10 +121,55 @@ export class AuthService {
           username: true,
           email: true,
           shortbio: true,
+          followers: true,
+          following: true,
+          _count: {
+            select: {
+              followers: true,
+              following: true,
+            }
+          }
         },
       });
 
       return userData;
+    } catch (e) {
+      throw new UnauthorizedException();
+    }
+  }
+
+  async userById(id: string, request: Request) {
+    try {
+      const cookie = request.cookies[process.env.JWT_NAME];
+
+      const cookieData = await this.jwtService.verifyAsync(cookie);
+
+      if (!cookieData) {
+        throw new UnauthorizedException();
+      }
+
+      const userByIdData = await this.prismaService.user.findFirst({
+        where: {
+          id
+        },
+        select: {
+          id: true,
+          image: true,
+          username: true,
+          email: true,
+          shortbio: true,
+          followers: true,
+          following: true,
+          _count: {
+            select: {
+              followers: true,
+              following: true,
+            }
+          }
+        },
+      });
+
+      return userByIdData;
     } catch (e) {
       throw new UnauthorizedException();
     }

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { ReactionService } from './reaction.service';
-import { ReactionController } from './reaction.controller';
+import { FollowService } from './follow.service';
+import { FollowController } from './follow.controller';
 import { PrismaModule } from 'src/prisma/prisma.module';
 import { JwtModule } from '@nestjs/jwt';
 
@@ -14,7 +14,7 @@ import { JwtModule } from '@nestjs/jwt';
       },
     }),
   ],
-  controllers: [ReactionController],
-  providers: [ReactionService]
+  controllers: [FollowController],
+  providers: [FollowService]
 })
-export class ReactionModule {}
+export class FollowModule {}
