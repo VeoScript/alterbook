@@ -1,5 +1,5 @@
 import React from 'react';
-import ViewImage from '../components/Modals/ViewImage';
+import ViewPost from './Modals/ViewPost';
 import moment from 'moment';
 import tw from '../styles/tailwind';
 import { FeatherIcon } from '../utils/Icons';
@@ -54,7 +54,7 @@ const CardPost: CardPostProps = ({ image, story, user, created_at }) => {
           </View>
         </View>
       </View>
-      <ViewImage
+      <ViewPost
         image={image}
         story={story}
         username={user.username}

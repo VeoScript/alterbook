@@ -1,8 +1,8 @@
 import React from 'react';
 import moment from 'moment';
 import tw from '../../styles/tailwind';
-import { ScrollView, Modal, View, Image, Text, TouchableOpacity } from 'react-native';
 import { OcticonIcon } from '../../utils/Icons';
+import { ScrollView, Modal, View, Image, Text, TouchableOpacity } from 'react-native';
 
 interface IProps {
   image?: string;
@@ -13,9 +13,9 @@ interface IProps {
   setIsVisible: (value: boolean) => void;
 }
 
-type ViewImageProps = (props: IProps) => JSX.Element;
+type ViewPostProps = (props: IProps) => JSX.Element;
 
-const ViewImage: ViewImageProps = ({ image, story, username, created_at, isVisible, setIsVisible }) => {
+const ViewPost: ViewPostProps = ({ image, story, username, created_at, isVisible, setIsVisible }) => {
   return (
     <Modal
       animationType="fade"
@@ -56,4 +56,4 @@ const ViewImage: ViewImageProps = ({ image, story, username, created_at, isVisib
   );
 };
 
-export default ViewImage;
+export default ViewPost;

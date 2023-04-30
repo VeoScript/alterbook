@@ -12,6 +12,24 @@ export interface RegisterInterface {
   setDefault: () => void;
 }
 
+export interface SettingsInterface {
+  image: any;
+  shortbio: string;
+  username: string;
+  email: string;
+  old_password: string;
+  new_password: string;
+  re_password: string;
+  setImage: (value: any) => void;
+  setShortBio: (value: string) => void;
+  setUsername: (value: string) => void;
+  setEmail: (value: string) => void;
+  setOldPassword: (value: string) => void;
+  setNewPassword: (value: string) => void;
+  setRePassword: (value: string) => void;
+  setDefault: () => void;
+}
+
 export interface NewPostInterface {
   isVisible: boolean;
   image: any;
