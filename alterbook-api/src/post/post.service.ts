@@ -71,6 +71,13 @@ export class PostService {
               username: true,
             },
           },
+          likes: {
+            select: {
+              id: true,
+              postId: true,
+              userId: true,
+            }
+          },
           _count: {
             select: {
               likes: true
@@ -124,6 +131,13 @@ export class PostService {
               username: true,
             },
           },
+          likes: {
+            select: {
+              id: true,
+              postId: true,
+              userId: true,
+            }
+          },
           _count: {
             select: {
               likes: true
@@ -171,6 +185,13 @@ export class PostService {
               image: true,
               username: true,
             },
+          },
+          likes: {
+            select: {
+              id: true,
+              postId: true,
+              userId: true,
+            }
           },
           _count: {
             select: {
