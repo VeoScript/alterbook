@@ -3,10 +3,10 @@ import moment from 'moment';
 import tw from '../../styles/tailwind';
 import { OcticonIcon } from '../../utils/Icons';
 import { View, Text, TouchableOpacity, Alert } from 'react-native';
+import { useNavigate } from '../../config/RootNavigation';
 
 import { CommentPropsInterface } from '../../shared/interfaces';
 import { useDeleteCommentMutation } from '../../helpers/tanstack/mutations/comments';
-import { useNavigate } from '../../config/RootNavigation';
 
 interface IProps extends CommentPropsInterface {
   userId: string;

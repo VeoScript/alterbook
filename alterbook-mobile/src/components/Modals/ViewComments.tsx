@@ -1,13 +1,13 @@
 import React from 'react';
 import Loading from '../../layouts/misc/Loading';
 import Error from '../../layouts/misc/Error';
+import CardComment from '../Cards/CardComment';
 import tw from '../../styles/tailwind';
 import { OcticonIcon } from '../../utils/Icons';
 import { Modal, FlatList, View, Text, ActivityIndicator, RefreshControl, TextInput, TouchableOpacity } from 'react-native';
 
 import { useGetComments } from '../../helpers/tanstack/queries/comments';
 import { useCreateCommentMutation } from '../../helpers/tanstack/mutations/comments';
-import CardComment from '../Cards/CardComment';
 
 interface IProps {
   userId: string;
