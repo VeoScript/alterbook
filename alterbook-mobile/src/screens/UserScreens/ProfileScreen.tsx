@@ -3,14 +3,19 @@ import Loading from '../../layouts/misc/Loading';
 import Error from '../../layouts/misc/Error';
 import MainLayout from '../../layouts/MainLayout';
 import CardPost from '../../components/Cards/CardPost';
+import ViewFollowers from '../../components/Modals/ViewFollowers';
+import ViewFollowing from '../../components/Modals/ViewFollowing';
 import tw from '../../styles/tailwind';
 import { FeatherIcon } from '../../utils/Icons';
-import { View, Text, Image, ActivityIndicator, FlatList, RefreshControl } from 'react-native';
+import { View, Text, Image, ActivityIndicator, FlatList, RefreshControl, TouchableOpacity } from 'react-native';
 
 import { useGetUser } from '../../helpers/tanstack/queries/user';
 import { useGetPostsByUser } from '../../helpers/tanstack/queries/post';
 
 const ProfileScreen = () => {
+
+  const [isVisibleFollowers, setIsVisibleFollowers] = React.useState<boolean>(false);
+  const [isVisibleFollowing, setIsVisibleFollowing] = React.useState<boolean>(false);
 
   const {
     data: user,
@@ -90,18 +95,24 @@ const ProfileScreen = () => {
           </View>
         </View>
         <View style={tw`flex-row items-center w-full border-line-bottom`}>
-          <View style={tw`flex-1 flex-row items-center justify-center p-3 border-line-right`}>
+          <TouchableOpacity
+            activeOpacity={0.5}
+            style={tw`flex-1 flex-row items-center justify-center p-3 border-line-right`}
+            onPress={() => setIsVisibleFollowers(true)}>
             <Text style={tw`text-regular`}>
               <Text style={tw`text-bold text-accent-4`}>{user._count.followers}</Text>
               {'\r'}_followers
             </Text>
-          </View>
-          <View style={tw`flex-1 flex-row items-center justify-center p-3`}>
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.5}
+            style={tw`flex-1 flex-row items-center justify-center p-3 border-line-right`}
+            onPress={() => setIsVisibleFollowing(true)}>
             <Text style={tw`text-regular`}>
               <Text style={tw`text-bold text-accent-4`}>{user._count.following}</Text>
               {'\r'}_following
             </Text>
-          </View>
+          </TouchableOpacity>
         </View>
         <View style={tw`flex-row items-center w-full p-3 border-line-bottom`}>
           <Text style={tw`text-regular text-base text-accent-4`}>Timeline</Text>
@@ -146,6 +157,14 @@ const ProfileScreen = () => {
         onEndReached={loadMore}
         onEndReachedThreshold={0.3}
         ListFooterComponent={isFetchingNextPage ? renderSpinner : null}
+      />
+      <ViewFollowers
+        isVisible={isVisibleFollowers}
+        setIsVisible={setIsVisibleFollowers}
+      />
+      <ViewFollowing
+        isVisible={isVisibleFollowing}
+        setIsVisible={setIsVisibleFollowing}
       />
     </MainLayout>
   );
