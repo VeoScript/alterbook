@@ -159,10 +159,12 @@ const ProfileScreen = () => {
         ListFooterComponent={isFetchingNextPage ? renderSpinner : null}
       />
       <ViewFollowers
+        userId={user.id}
         isVisible={isVisibleFollowers}
         setIsVisible={setIsVisibleFollowers}
       />
       <ViewFollowing
+        userId={user.id}
         isVisible={isVisibleFollowing}
         setIsVisible={setIsVisibleFollowing}
       />
