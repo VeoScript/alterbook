@@ -30,7 +30,7 @@ export class PostService {
       }
 
       if (story === '') {
-        throw new HttpException('Story is required', HttpStatus.NOT_FOUND);
+        throw new HttpException('Story is required', HttpStatus.BAD_REQUEST);
       }
 
       return await this.prismaService.post.create({
@@ -41,7 +41,7 @@ export class PostService {
         },
       });
     } catch (e) {
-      throw new HttpException(e, HttpStatus.NOT_FOUND);
+      throw new HttpException(e, HttpStatus.BAD_REQUEST);
     }
   }
 
@@ -233,7 +233,7 @@ export class PostService {
         },
       });
     } catch (e) {
-      throw new HttpException(e, HttpStatus.NOT_FOUND);
+      throw new HttpException(e, HttpStatus.BAD_REQUEST);
     }
   }
 

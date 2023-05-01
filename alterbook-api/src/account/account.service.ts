@@ -41,7 +41,7 @@ export class AccountService {
         },
       });
     } catch (e) {
-      throw new HttpException(e, HttpStatus.NOT_FOUND);
+      throw new HttpException(e, HttpStatus.BAD_REQUEST);
     }
   }
 
@@ -67,7 +67,7 @@ export class AccountService {
         },
       });
     } catch (e) {
-      throw new HttpException(e, HttpStatus.NOT_FOUND);
+      throw new HttpException(e, HttpStatus.BAD_REQUEST);
     }
   }
 
@@ -95,7 +95,7 @@ export class AccountService {
       const matchedPassword = await bcrypt.compare(old_password, user.password);
 
       if (!matchedPassword) {
-        throw new HttpException('Old password did not match', HttpStatus.NOT_FOUND);
+        throw new HttpException('Old password did not match', HttpStatus.BAD_REQUEST);
       }
 
       const hashedPassword = await bcrypt.hash(new_password, roundsOfHashing);
@@ -109,7 +109,7 @@ export class AccountService {
         },
       });
     } catch (e) {
-      throw new HttpException(e, HttpStatus.NOT_FOUND);
+      throw new HttpException(e, HttpStatus.BAD_REQUEST);
     }
   }
 }
