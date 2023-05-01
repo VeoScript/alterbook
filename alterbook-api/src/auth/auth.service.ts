@@ -1,8 +1,8 @@
 import {
   Injectable,
-  NotFoundException,
   UnauthorizedException,
-  BadRequestException,
+  HttpStatus,
+  HttpException
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { Prisma } from '@prisma/client';
@@ -26,7 +26,7 @@ export class AuthService {
       const { username, email, password } = registerAuthDto;
 
       if (username === '' || email === '' || password === '') {
-        throw new BadRequestException('All fields are required');
+        throw new HttpException({ message: 'All fields are required' }, HttpStatus.NOT_FOUND);
       }
 
       const hashedPassword = await bcrypt.hash(password, roundsOfHashing);
@@ -40,10 +40,10 @@ export class AuthService {
       if (e instanceof Prisma.PrismaClientKnownRequestError) {
         // P2002 - is prisma error code for unique constraint violation...
         if (e.code === 'P2002') {
-          throw new BadRequestException('This account is not available.');
+          throw new HttpException({ message: 'This account is not available.' }, HttpStatus.NOT_FOUND);
         }
       }
-      throw new BadRequestException(e);
+      throw new HttpException({ message: e }, HttpStatus.NOT_FOUND);
     }
   }
 
@@ -52,7 +52,7 @@ export class AuthService {
       const { username, password } = loginAuthDto;
 
       if (username === '' || password === '') {
-        throw new BadRequestException('Username and password is required');
+        throw new HttpException({ message: 'Username and password is required' }, HttpStatus.NOT_FOUND);
       }
 
       const user = await this.prismaService.user.findUnique({
@@ -68,13 +68,13 @@ export class AuthService {
       });
 
       if (!user) {
-        throw new NotFoundException('Account not found!');
+        throw new HttpException({ message: 'Account not found' }, HttpStatus.NOT_FOUND);
       }
 
       const isPasswordValue = await bcrypt.compare(password, user.password);
 
       if (!isPasswordValue) {
-        throw new UnauthorizedException('Invalid password!');
+        throw new HttpException({ message: 'Invalid password' }, HttpStatus.NOT_FOUND);
       }
 
       const jwt = await this.jwtService.signAsync({ id: user.id });
@@ -85,7 +85,7 @@ export class AuthService {
         message: 'Success',
       };
     } catch (e) {
-      throw new BadRequestException(e);
+      throw new UnauthorizedException();
     }
   }
 
@@ -97,7 +97,7 @@ export class AuthService {
         message: 'Log out successfully',
       };
     } catch (e) {
-      throw new BadRequestException(e);
+      throw new UnauthorizedException();
     }
   }
 
