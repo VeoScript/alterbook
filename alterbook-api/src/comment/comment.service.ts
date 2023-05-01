@@ -29,7 +29,7 @@ export class CommentService {
       }
 
       if (message === '') {
-        throw new HttpException('Comment is required', HttpStatus.NOT_FOUND);
+        throw new HttpException('Comment is required', HttpStatus.BAD_REQUEST);
       }
 
       return await this.prismaService.comment.create({
@@ -40,7 +40,7 @@ export class CommentService {
         },
       });
     } catch (e) {
-      throw new HttpException(e, HttpStatus.NOT_FOUND);
+      throw new HttpException(e, HttpStatus.BAD_REQUEST);
     }
   }
 

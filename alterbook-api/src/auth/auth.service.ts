@@ -26,7 +26,7 @@ export class AuthService {
       const { username, email, password } = registerAuthDto;
 
       if (username === '' || email === '' || password === '') {
-        throw new HttpException('All fields are required', HttpStatus.NOT_FOUND);
+        throw new HttpException('All fields are required', HttpStatus.BAD_REQUEST);
       }
 
       const hashedPassword = await bcrypt.hash(password, roundsOfHashing);
@@ -40,10 +40,10 @@ export class AuthService {
       if (e instanceof Prisma.PrismaClientKnownRequestError) {
         // P2002 - is prisma error code for unique constraint violation...
         if (e.code === 'P2002') {
-          throw new HttpException('This account is not available.', HttpStatus.NOT_FOUND);
+          throw new HttpException('This account is not available.', HttpStatus.BAD_REQUEST);
         }
       }
-      throw new HttpException(e, HttpStatus.NOT_FOUND);
+      throw new HttpException(e, HttpStatus.BAD_REQUEST);
     }
   }
 
@@ -52,7 +52,7 @@ export class AuthService {
       const { username, password } = loginAuthDto;
 
       if (username === '' || password === '') {
-        throw new HttpException('Username and password is required', HttpStatus.NOT_FOUND);
+        throw new HttpException('Username and password is required', HttpStatus.BAD_REQUEST);
       }
 
       const user = await this.prismaService.user.findUnique({
@@ -68,13 +68,13 @@ export class AuthService {
       });
 
       if (!user) {
-        throw new HttpException('Account not found', HttpStatus.NOT_FOUND);
+        throw new HttpException('Account not found', HttpStatus.BAD_REQUEST);
       }
 
       const isPasswordValue = await bcrypt.compare(password, user.password);
 
       if (!isPasswordValue) {
-        throw new HttpException('Invalid password', HttpStatus.NOT_FOUND);
+        throw new HttpException('Invalid password', HttpStatus.BAD_REQUEST);
       }
 
       const jwt = await this.jwtService.signAsync({ id: user.id });
@@ -85,7 +85,7 @@ export class AuthService {
         message: 'Success',
       };
     } catch (e) {
-      throw new HttpException(e, HttpStatus.NOT_FOUND);
+      throw new HttpException(e, HttpStatus.BAD_REQUEST);
     }
   }
 
@@ -97,7 +97,7 @@ export class AuthService {
         message: 'Log out successfully',
       };
     } catch (e) {
-      throw new HttpException(e, HttpStatus.NOT_FOUND);
+      throw new HttpException(e, HttpStatus.BAD_REQUEST);
     }
   }
 
@@ -134,7 +134,7 @@ export class AuthService {
 
       return userData;
     } catch (e) {
-      throw new HttpException(e, HttpStatus.NOT_FOUND);
+      throw new HttpException(e, HttpStatus.BAD_REQUEST);
     }
   }
 
@@ -171,7 +171,7 @@ export class AuthService {
 
       return userByIdData;
     } catch (e) {
-      throw new HttpException(e, HttpStatus.NOT_FOUND);
+      throw new HttpException(e, HttpStatus.BAD_REQUEST);
     }
   }
 }
