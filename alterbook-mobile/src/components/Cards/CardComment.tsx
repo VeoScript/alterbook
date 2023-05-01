@@ -28,30 +28,32 @@ const CardComment: CardCommentProps = ({ id, message, created_at, user, userId }
     <View style={tw`flex-col items-start w-full p-3 border-line-bottom`}>
       <View style={tw`flex-row items-center justify-between w-full`}>
         <Text style={tw`text-light text-sm`}>{message}</Text>
-        <TouchableOpacity
-          activeOpacity={0.5}
-          onPress={() => {
-            Alert.alert(
-              '',
-              'Are you sure you want to delete this comment?',
-              [
+        {user.id === userId && (
+          <TouchableOpacity
+            activeOpacity={0.5}
+            onPress={() => {
+              Alert.alert(
+                '',
+                'Are you sure you want to delete this comment?',
+                [
+                  {
+                    text: 'No',
+                    style: 'cancel',
+                  },
+                  {
+                    text: 'Yes',
+                    style: 'default',
+                    onPress: handleDeleteComment,
+                  },
+                ],
                 {
-                  text: 'No',
-                  style: 'cancel',
+                  cancelable: true,
                 },
-                {
-                  text: 'Yes',
-                  style: 'default',
-                  onPress: handleDeleteComment,
-                },
-              ],
-              {
-                cancelable: true,
-              },
-            );
-          }}>
-          <OcticonIcon size={15} name="trash" color="#B00000" />
-        </TouchableOpacity>
+              );
+            }}>
+            <OcticonIcon size={15} name="trash" color="#FF5151" />
+          </TouchableOpacity>
+        )}
       </View>
       <View style={tw`flex-row items-center w-full my-3`}>
         <TouchableOpacity

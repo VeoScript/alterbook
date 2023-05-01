@@ -1,13 +1,18 @@
 import React from 'react';
 import tw from '../../styles/tailwind';
 import { FeatherIcon } from '../../utils/Icons';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { useNavigate } from '../../config/RootNavigation';
 
 import { UserInterface } from '../../shared/interfaces';
 
-type CardFollowersProps = (props: Omit<UserInterface, 'id' | 'email' | 'shortbio' | 'followers' | 'following'>) => JSX.Element;
+interface IProps extends Omit<UserInterface, 'email' | 'shortbio' | 'followers' | 'following'> {
+  userId: string;
+}
 
-const CardFollowers: CardFollowersProps = ({ image, username, _count }) => {
+type CardFollowersProps = (props: IProps) => JSX.Element;
+
+const CardFollowers: CardFollowersProps = ({ id, image, username, _count, userId }) => {
   return (
     <View style={tw`flex-col w-full h-[5rem] overflow-hidden border-line-bottom`}>
       <View style={tw`flex-1 flex-row items-start w-full mr-2`}>
@@ -26,7 +31,18 @@ const CardFollowers: CardFollowersProps = ({ image, username, _count }) => {
             </View>
         }
         <View style={tw`flex-1 flex-col w-full ml-2 py-2`}>
-          <Text style={tw`text-bold text-base text-accent-4`}>@{username}</Text>
+          <TouchableOpacity
+            activeOpacity={0.5}
+            style={tw`flex-1`}
+            onPress={() => {
+              if (id === userId) {
+                useNavigate('ProfileScreen');
+              } else {
+                useNavigate('OtherProfileScreen', { id: id });
+              }
+            }}>
+            <Text style={tw`text-bold text-base text-accent-4`}>@{username}</Text>
+          </TouchableOpacity>
           <Text style={tw`text-light text-sm`}>_followers: {_count.followers}</Text>
         </View>
       </View>

@@ -4,11 +4,12 @@ import ViewComments from '../Modals/ViewComments';
 import LikeButton from '../Interactions/LikeButton';
 import moment from 'moment';
 import tw from '../../styles/tailwind';
-import { FeatherIcon } from '../../utils/Icons';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { FeatherIcon, OcticonIcon } from '../../utils/Icons';
+import { View, Text, Image, TouchableOpacity, Alert } from 'react-native';
 import { useNavigate } from '../../config/RootNavigation';
 
 import { PostPropsInterface } from '../../shared/interfaces';
+import { useDeletePostMutation } from '../../helpers/tanstack/mutations/post';
 
 interface IProps extends PostPropsInterface {
   userId: string;
@@ -20,6 +21,12 @@ const CardPost: CardPostProps = ({ id, image, story, created_at, user, likes, _c
 
   const [isVisiblePost, setIsVisiblePost] = React.useState<boolean>(false);
   const [isVisibleComment, setIsVisibleComment] = React.useState<boolean>(false);
+
+  const deletePostMutation = useDeletePostMutation(id);
+
+  const handleDeletePost = async () => {
+    await deletePostMutation.mutateAsync();
+  };
 
   return (
     <>
@@ -39,6 +46,33 @@ const CardPost: CardPostProps = ({ id, image, story, created_at, user, likes, _c
             </TouchableOpacity>
             <Text style={tw`mt-1 text-regular text-center text-xs text-neutral-400`}>{_count.comments}</Text>
           </View>
+          {user.id === userId && (
+            <TouchableOpacity
+              activeOpacity={0.5}
+              style={tw`flex-col items-center w-full my-1`}
+              onPress={() => {
+                Alert.alert(
+                  '',
+                  'Are you sure you want to delete this post?',
+                  [
+                    {
+                      text: 'No',
+                      style: 'cancel',
+                    },
+                    {
+                      text: 'Yes',
+                      style: 'default',
+                      onPress: handleDeletePost,
+                    },
+                  ],
+                  {
+                    cancelable: true,
+                  },
+                );
+              }}>
+              <OcticonIcon size={20} name="trash" color="#FF5151" />
+            </TouchableOpacity>
+          )}
         </View>
         <View style={tw`flex-1 flex-col items-start w-full ml-3`}>
           <View style={tw`w-full`}>

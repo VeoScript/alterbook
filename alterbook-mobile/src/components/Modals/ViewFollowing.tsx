@@ -9,13 +9,14 @@ import { Modal, FlatList, View, Text, ActivityIndicator, RefreshControl, Touchab
 import { useGetFollowing } from '../../helpers/tanstack/queries/followers';
 
 interface IProps {
+  userId: string;
   isVisible: boolean;
   setIsVisible: (value: boolean) => void;
 }
 
 type ViewFollowingProps = (props: IProps) => JSX.Element;
 
-const ViewFollowing: ViewFollowingProps = ({ isVisible, setIsVisible }) => {
+const ViewFollowing: ViewFollowingProps = ({ userId, isVisible, setIsVisible }) => {
   const {
     data: following,
     isLoading: isLoadingFollowing,
@@ -76,9 +77,11 @@ const ViewFollowing: ViewFollowingProps = ({ isVisible, setIsVisible }) => {
   const renderData = (item: any) => {
     return (
       <CardFollowing
+        id={item.item.follower.id}
         image={item.item.follower.image}
         username={item.item.follower.username}
         _count={item.item.follower._count}
+        userId={userId}
       />
     );
   };

@@ -108,15 +108,17 @@ const OtherProfileScreen = () => {
             </View>
           </View>
         </View>
-        <TouchableOpacity
-          activeOpacity={0.5}
-          style={tw`flex-col items-center w-full p-3 border-line-bottom`}
-          onPress={() => {
-            handleFollow();
-          }}
-        >
-          <Text style={tw`text-regular text-accent-4`}>{isLoading ? '_loading...' : isFollow ? '_unfollow' : '_follow'}</Text>
-        </TouchableOpacity>
+        {profile.id !== user.id && (
+          <TouchableOpacity
+            activeOpacity={0.5}
+            style={tw`flex-col items-center w-full p-3 border-line-bottom`}
+            onPress={() => {
+              handleFollow();
+            }}
+          >
+            <Text style={tw`text-regular text-accent-4`}>{isLoading ? '_loading...' : isFollow ? '_unfollow' : '_follow'}</Text>
+          </TouchableOpacity>
+        )}
         <View style={tw`flex-row items-center w-full border-line-bottom`}>
           <View style={tw`flex-1 flex-row items-center justify-center p-3 border-line-right`}>
             <Text style={tw`text-regular`}>
@@ -148,7 +150,7 @@ const OtherProfileScreen = () => {
         user={item.item?.user}
         likes={item.item?.likes}
         _count={item.item?._count}
-        userId={profile.id}
+        userId={user.id}
       />
     );
   };

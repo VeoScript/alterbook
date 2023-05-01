@@ -21,3 +21,20 @@ export const useCreatePostMutation = () => {
     },
   );
 };
+
+export const useDeletePostMutation = (id: string) => {
+  const queryClient = useQueryClient();
+  return useMutation(() =>
+    api.delete(`/api/post/${id}`),
+    {
+      onError: (error: any) => {
+        console.error('ERROR DELETE POST', error.response.data);
+      },
+      onSuccess: async () => {
+        queryClient.invalidateQueries(['posts']);
+        queryClient.invalidateQueries(['userPosts']);
+        Toast('Deleted successfully');
+      },
+    },
+  );
+};
