@@ -1,4 +1,9 @@
-import { Injectable, BadRequestException, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  UnauthorizedException,
+  HttpStatus,
+  HttpException
+} from '@nestjs/common';
 import { Request } from 'express';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
@@ -24,7 +29,7 @@ export class CommentService {
       }
 
       if (message === '') {
-        throw new BadRequestException('Comment is required');
+        throw new HttpException('Comment is required', HttpStatus.NOT_FOUND);
       }
 
       return await this.prismaService.comment.create({
@@ -35,7 +40,7 @@ export class CommentService {
         },
       });
     } catch (e) {
-      throw new BadRequestException(e);
+      throw new HttpException(e, HttpStatus.NOT_FOUND);
     }
   }
 
@@ -102,7 +107,7 @@ export class CommentService {
         }
       });
     } catch (e) {
-      throw new BadRequestException(e);
+      throw new UnauthorizedException();
     }
   }
 }

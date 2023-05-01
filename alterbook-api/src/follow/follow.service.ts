@@ -1,4 +1,7 @@
-import { Injectable, BadRequestException, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { Request } from 'express';
 import { FollowDto } from './dto/follow.dto';
 import { UnfollowDto } from './dto/unfollow.dto';
@@ -65,7 +68,7 @@ export class FollowService {
         nextId:  followers?.followers.length === limit ? followers.followers[limit - 1].id : undefined,
       };
     } catch (e) {
-      throw new BadRequestException(e);
+      throw new UnauthorizedException();
     }
   }
   
@@ -122,7 +125,7 @@ export class FollowService {
         nextId:  following?.following.length === limit ? following.following[limit - 1].id : undefined,
       };
     } catch (e) {
-      throw new BadRequestException(e);
+      throw new UnauthorizedException();
     }
   }
   
@@ -141,7 +144,7 @@ export class FollowService {
         data: followDto,
       });
     } catch (e) {
-      throw new BadRequestException(e);
+      throw new UnauthorizedException();
     }
   }
 
@@ -160,7 +163,7 @@ export class FollowService {
         where: unfollowDto,
       });
     } catch (e) {
-      throw new BadRequestException(e);
+      throw new UnauthorizedException();
     }
   }
 }

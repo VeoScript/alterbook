@@ -1,7 +1,8 @@
 import {
   Injectable,
-  BadRequestException,
   UnauthorizedException,
+  HttpStatus,
+  HttpException
 } from '@nestjs/common';
 import { Request } from 'express';
 import { CreatePostDto } from './dto/create-post.dto';
@@ -29,7 +30,7 @@ export class PostService {
       }
 
       if (story === '') {
-        throw new BadRequestException('Story is required');
+        throw new HttpException('Story is required', HttpStatus.NOT_FOUND);
       }
 
       return await this.prismaService.post.create({
@@ -40,7 +41,7 @@ export class PostService {
         },
       });
     } catch (e) {
-      throw new BadRequestException(e);
+      throw new HttpException(e, HttpStatus.NOT_FOUND);
     }
   }
 
@@ -232,7 +233,7 @@ export class PostService {
         },
       });
     } catch (e) {
-      throw new BadRequestException(e);
+      throw new HttpException(e, HttpStatus.NOT_FOUND);
     }
   }
 

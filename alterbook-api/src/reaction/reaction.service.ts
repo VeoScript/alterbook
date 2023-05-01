@@ -1,4 +1,7 @@
-import { Injectable, BadRequestException, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  UnauthorizedException
+} from '@nestjs/common';
 import { Request } from 'express';
 import { LikeDto } from './dto/like.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
@@ -29,7 +32,7 @@ export class ReactionService {
         },
       });
     } catch (e) {
-      throw new BadRequestException(e);
+      throw new UnauthorizedException();
     }
   }
 
@@ -51,7 +54,7 @@ export class ReactionService {
         },
       });
     } catch (e) {
-      throw new BadRequestException(e);
+      throw new UnauthorizedException();
     }
   }
 }
