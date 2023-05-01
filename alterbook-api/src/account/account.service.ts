@@ -1,9 +1,4 @@
-import {
-  Injectable,
-  UnauthorizedException,
-  HttpException,
-  HttpStatus
-} from '@nestjs/common';
+import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { Request } from 'express';
 import { UpdateAccountDto } from './dto/update-account';
 import { ChangePasswordDto } from './dto/change-password.dto';
@@ -41,7 +36,7 @@ export class AccountService {
         },
       });
     } catch (e) {
-      throw new UnauthorizedException();
+      throw new BadRequestException(e);
     }
   }
 
@@ -67,7 +62,7 @@ export class AccountService {
         },
       });
     } catch (e) {
-      throw new UnauthorizedException();
+      throw new BadRequestException(e);
     }
   }
 
@@ -95,12 +90,7 @@ export class AccountService {
       const matchedPassword = await bcrypt.compare(old_password, user.password);
 
       if (!matchedPassword) {
-        throw new HttpException({
-          status: HttpStatus.BAD_REQUEST,
-          error: 'Old password did not match',
-        }, HttpStatus.BAD_REQUEST, {
-          description: 'Old password did not match'
-        });
+        throw new BadRequestException('Old password did not match');
       }
 
       const hashedPassword = await bcrypt.hash(new_password, roundsOfHashing);
@@ -114,7 +104,7 @@ export class AccountService {
         },
       });
     } catch (e) {
-      throw new UnauthorizedException();
+      throw new BadRequestException(e);
     }
   }
 }

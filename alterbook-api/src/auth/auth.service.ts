@@ -1,8 +1,8 @@
 import {
   Injectable,
+  NotFoundException,
   UnauthorizedException,
-  HttpException,
-  HttpStatus,
+  BadRequestException,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { Prisma } from '@prisma/client';
@@ -26,12 +26,7 @@ export class AuthService {
       const { username, email, password } = registerAuthDto;
 
       if (username === '' || email === '' || password === '') {
-        throw new HttpException({
-          status: HttpStatus.BAD_REQUEST,
-          error: 'All fields are required',
-        }, HttpStatus.BAD_REQUEST, {
-          description: 'All fields are required'
-        });
+        throw new BadRequestException('All fields are required');
       }
 
       const hashedPassword = await bcrypt.hash(password, roundsOfHashing);
@@ -45,20 +40,10 @@ export class AuthService {
       if (e instanceof Prisma.PrismaClientKnownRequestError) {
         // P2002 - is prisma error code for unique constraint violation...
         if (e.code === 'P2002') {
-          throw new HttpException({
-            status: HttpStatus.BAD_REQUEST,
-            error: 'This account is not available.',
-          }, HttpStatus.BAD_REQUEST, {
-            cause: e
-          });
+          throw new BadRequestException('This account is not available.');
         }
       }
-      throw new HttpException({
-        status: HttpStatus.BAD_REQUEST,
-        error: e,
-      }, HttpStatus.BAD_REQUEST, {
-        cause: e
-      });
+      throw new BadRequestException(e);
     }
   }
 
@@ -67,12 +52,7 @@ export class AuthService {
       const { username, password } = loginAuthDto;
 
       if (username === '' || password === '') {
-        throw new HttpException({
-          status: HttpStatus.BAD_REQUEST,
-          error: 'Username and password is required',
-        }, HttpStatus.BAD_REQUEST, {
-          description: 'Username and password is required'
-        });
+        throw new BadRequestException('Username and password is required');
       }
 
       const user = await this.prismaService.user.findUnique({
@@ -88,23 +68,13 @@ export class AuthService {
       });
 
       if (!user) {
-        throw new HttpException({
-          status: HttpStatus.BAD_REQUEST,
-          error: 'Account not found!',
-        }, HttpStatus.BAD_REQUEST, {
-          description: 'Account not found!'
-        });
+        throw new NotFoundException('Account not found!');
       }
 
       const isPasswordValue = await bcrypt.compare(password, user.password);
 
       if (!isPasswordValue) {
-        throw new HttpException({
-          status: HttpStatus.BAD_REQUEST,
-          error: 'Invalid password!',
-        }, HttpStatus.BAD_REQUEST, {
-          description: 'Invalid password!'
-        });
+        throw new UnauthorizedException('Invalid password!');
       }
 
       const jwt = await this.jwtService.signAsync({ id: user.id });
@@ -115,12 +85,7 @@ export class AuthService {
         message: 'Success',
       };
     } catch (e) {
-      throw new HttpException({
-        status: HttpStatus.BAD_REQUEST,
-        error: e,
-      }, HttpStatus.BAD_REQUEST, {
-        cause: e
-      });
+      throw new BadRequestException(e);
     }
   }
 
@@ -132,12 +97,7 @@ export class AuthService {
         message: 'Log out successfully',
       };
     } catch (e) {
-      throw new HttpException({
-        status: HttpStatus.BAD_REQUEST,
-        error: e,
-      }, HttpStatus.BAD_REQUEST, {
-        cause: e
-      });
+      throw new BadRequestException(e);
     }
   }
 
