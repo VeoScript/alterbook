@@ -1,13 +1,11 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as cookieParser from 'cookie-parser';
-import { RequestHandler } from 'express-serve-static-core';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  const cookieParserMiddleware: RequestHandler = cookieParser();
-  app.use(cookieParserMiddleware);
+  app.use(cookieParser());
 
   app.enableCors({
     allowedHeaders: ['content-type'],
