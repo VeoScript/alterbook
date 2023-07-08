@@ -16,6 +16,6 @@ async function bootstrap() {
         : process.env.PROD_ORIGIN_URL,
   });
 
-  await app.listen(3333);
+  await app.listen(8080);
 }
 bootstrap();
